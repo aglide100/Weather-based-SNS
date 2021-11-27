@@ -2,9 +2,7 @@
 
 ## 1. 목적
 
----
-
-이 프로젝트는 mysql와 static webapp의 테스트 코드입니다!
+이 프로젝트는 postgresql와 static webapp의 테스트 코드입니다!
 
 react + nodejs로 구성을 하였으며
 
@@ -48,6 +46,8 @@ Database는 docker로 구성였으며
 
 ### apid 및 webd 실행
 
+npm script로 실행하며 
+
 > npm run build && npm run start
 
 docker을 사용하신다면 전체 프로젝트 빌드는
@@ -58,9 +58,12 @@ docker을 사용하신다면 전체 프로젝트 빌드는
 
 ---
 
-본 레포는 기본적으로 typescript을 이용하며 루트에서 js는 tsc를 통해 보일러플레이트된 코드입니다.
+본 레포는 기본적으로 typescript을 이용하며 루트디렉터링에서의 js는 tsc를 통해 보일러플레이트된 코드입니다.
 
 그래서 작업은 ts파일을 통해서 작업을 해주시면 되겠습니다.
+
+
+DB나 프로젝트를 위해 docker와 docker-compose를 사용하였습니다.
 
 아래의 환경에서 테스트 하였으며 macos에서 테스트하였으며
 
