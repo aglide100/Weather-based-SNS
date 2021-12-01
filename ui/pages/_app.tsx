@@ -11,20 +11,20 @@ function App({ Component, pageProps }) {
 
   return (
     <UsingMobileWrapper>
-      <RequireLogin>
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <motion.div
-            key={router.pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Layout title="Hello for Book Shop Example"></Layout>
-            <Component {...pageProps}></Component>
-          </motion.div>
-        </AnimatePresence>
-      </RequireLogin>
+      {/* <RequireLogin> */}
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <motion.div
+          key={router.pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Layout title="Hello for Book Shop Example"></Layout>
+          <Component {...pageProps}></Component>
+        </motion.div>
+      </AnimatePresence>
+      {/* </RequireLogin> */}
     </UsingMobileWrapper>
   );
 }

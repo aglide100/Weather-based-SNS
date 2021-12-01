@@ -10,7 +10,7 @@ WORKDIR /usr/src/app/ui
 
 RUN npm install --no-optional
 
-RUN npm run build
+RUN npm run make
 
 WORKDIR /usr/src/app/
 
