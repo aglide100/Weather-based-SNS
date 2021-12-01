@@ -20,7 +20,7 @@ services:
       - docker_network
     environment:
       #PGDATA: /var/lib/postgresql/data
-      POSTGRES_DB: book_shop
+      POSTGRES_DB: weather_based_SNS
       POSTGRES_HOST_AUTH_METHOD: trust
       POSTGRES_USER: table_admin
       POSTGRES_PASSWORD: ${USERPWD}
