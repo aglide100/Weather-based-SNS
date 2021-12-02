@@ -3,35 +3,35 @@ x-services-volume: &services-volume
   type: bind
 
 services:
-  node:
-    container_name: node
+  nodeWbsSNS:
+    container_name: nodeWbsSNS
     build:
       context: ./
-    hostname: node
+    hostname: nodeWbsSNS
     networks:
       - docker_network
     ports:
-      - 3000:3000
-      - 4000:4000
+      - 10200:3000
+      - 10100:4000
     links:
-      - postgres:localhost
+      - postgres:app_db
     environment:
       VERSION: v1
       DB_USER: table_admin
       DB_PASSWORD: HeLLo!1
-      DB_HOST: localhost
+      DB_HOST: app_db
       DB_PORT: 5432
-  postgres:
-    container_name: postgres
+  postgresWbsSNS:
+    container_name: postgresWbsSNS
     build:
       context: ./cmd/db
     volumes:
       - <<: *services-volume
-        source: ${HOST}/postgres
+        source: ${HOST}/postgresWbsSNS
         target: /var/lib/postgres
-    ports:
-      - 5432:5432
-    hostname: postgres
+    expose:
+      - 5432
+    hostname: app_db
     networks:
       - docker_network
     environment:
