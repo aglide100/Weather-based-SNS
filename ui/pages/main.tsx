@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 type todayWeatherProps = {
   kind: string; // 흐림, 비, 맑음
@@ -114,7 +113,7 @@ const MainPage: React.FC<{}> = () => {
         }}
       >
         <div className="text-white text-2xl"> 진행중인 Event {">"}</div>
-        <Image src="/" width="400px" height="200px"></Image>
+        <img src="/1.webp" className="w-80 h-40"></img>
       </div>
 
       <div
@@ -125,7 +124,7 @@ const MainPage: React.FC<{}> = () => {
         }}
       >
         <div className="text-white text-2xl">교환소 {">"}</div>
-        <Image src="/" width="400px" height="200px"></Image>
+        <img src="/1.webp" className="w-80 h-40"></img>
       </div>
     </div>
   );
