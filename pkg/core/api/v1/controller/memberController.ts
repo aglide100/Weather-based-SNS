@@ -21,11 +21,10 @@ export class MemberController extends BaseController {
 
   public login(): Handler {
     return (req: Request, res: Response) => {
-      console.log("request member " + req.body.member_no + " login");
+      console.log("request member " + req.body.mem_id + " login");
       const newUser: MemberProps = {
-        member_no: req.body.member_no,
-        name: "",
-        password: req.body.password,
+        mem_id: req.body.bodymem_id,
+        mem_pw: req.body.bodymem_pw,
       };
 
       MemberDao.getInstance().selectMember(
@@ -47,13 +46,16 @@ export class MemberController extends BaseController {
 
   public join(): Handler {
     return (req: Request, res: Response) => {
-      console.log("request member " + req.body.name + " join");
+      console.log("request member " + req.body.mem_name + " join");
 
       const id = uuid.v4();
       const newUser: MemberProps = {
-        member_no: req.body.member_no,
-        name: req.body.name,
-        password: req.body.password,
+        mem_id: req.body.bodymem_id,
+        mem_pw: req.body.bodymem_pw,
+        mem_phone: req.body.bodymem_phone,
+        mem_email: req.body.bodymem_email,
+        mem_name: req.body.bodymem_name,
+        mem_nickname: req.body.bodymem_nickname,
       };
 
       MemberDao.getInstance().insertMember(
