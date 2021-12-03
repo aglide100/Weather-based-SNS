@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
-const port = 3500;
+const port = 3000;
 const uiPath = path_1.default.join(__dirname, "../../ui/out");
 const server = (0, express_1.default)();
 server.use(express_1.default.static(uiPath));

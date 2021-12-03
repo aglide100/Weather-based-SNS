@@ -1,4 +1,4 @@
-import { PostProps } from "...../../../pkg/core/api/v1/common/PostProps";
+import { PostProps } from "../../pkg/core/api/v1/common/PostProps";
 
 export const PostDumpDatas: PostProps[] = [
   {
