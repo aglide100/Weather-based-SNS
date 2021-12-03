@@ -25,11 +25,11 @@ export default function Layout({
       setLoginMenu(
         <>
           <Link href="/signin">
-            <a>Sign In</a>
+            <a>로그인</a>
           </Link>{" "}
           |{" "}
           <Link href="/signup">
-            <a>Sign Up</a>
+            <a>회원가입</a>
           </Link>
         </>
       );
@@ -63,9 +63,12 @@ export default function Layout({
       <header>
         <nav>
           <Link href="/">
-            <a>Home</a>
+            <a>메인</a>
           </Link>{" "}
-          | {loginMenu}
+          | {loginMenu} |{" "}
+          <Link href="/posts">
+            <a>게시글</a>
+          </Link>{" "}
         </nav>
       </header>
       {children}

@@ -20,7 +20,7 @@ function App({ Component, pageProps }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <Layout title="Hello for Book Shop Example"></Layout>
+          <Layout title="Weather Based SNS"></Layout>
           <Component {...pageProps}></Component>
         </motion.div>
       </AnimatePresence>
