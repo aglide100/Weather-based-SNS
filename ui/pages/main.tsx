@@ -38,6 +38,17 @@ const TagList: React.FC<{}> = () => {
   );
 };
 
+
+const ClothesList: React.FC<{}> = () => {
+  return (
+    <div>
+        <div className="text-2xl">아우터</div>
+        <div className="text-2xl">상의</div>
+        <div className="text-2xl">하의</div>
+    </div>
+  );
+};
+
 type TodayWeatherEventProps = {
   id: string;
   onClickHandler(id: string): void;
@@ -92,7 +103,7 @@ const MainPage: React.FC<{}> = () => {
         </div>
         <div>
           추천 태그
-          <TagList></TagList>
+          <TagList><ClothesList></ClothesList></TagList>
         </div>
       </div>
 
