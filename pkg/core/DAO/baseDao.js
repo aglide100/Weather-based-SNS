@@ -22,7 +22,7 @@ let DBPort = process.env.DB_PORT;
 let config = {
     user: "table_admin",
     host: "localhost",
-    database: "book_shop",
+    database: "weather_based_SNS",
     password: "HeLLo!1",
     port: 5432,
 };

@@ -37,11 +37,10 @@ class MemberController extends baseController_1.BaseController {
     }
     login() {
         return (req, res) => {
-            console.log("request member " + req.body.member_no + " login");
+            console.log("request member " + req.body.mem_id + " login");
             const newUser = {
-                member_no: req.body.member_no,
-                name: "",
-                password: req.body.password,
+                mem_id: req.body.bodymem_id,
+                mem_pw: req.body.bodymem_pw,
             };
             memberDao_1.MemberDao.getInstance().selectMember(newUser, (result, error) => {
                 if (error != null || result == null) {
@@ -59,12 +58,15 @@ class MemberController extends baseController_1.BaseController {
     }
     join() {
         return (req, res) => {
-            console.log("request member " + req.body.name + " join");
+            console.log("request member " + req.body.mem_name + " join");
             const id = uuid.v4();
             const newUser = {
-                member_no: req.body.member_no,
-                name: req.body.name,
-                password: req.body.password,
+                mem_id: req.body.bodymem_id,
+                mem_pw: req.body.bodymem_pw,
+                mem_phone: req.body.bodymem_phone,
+                mem_email: req.body.bodymem_email,
+                mem_name: req.body.bodymem_name,
+                mem_nickname: req.body.bodymem_nickname,
             };
             memberDao_1.MemberDao.getInstance().insertMember(newUser, (result, error) => {
                 if (error != null || result == null) {
