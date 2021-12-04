@@ -18,7 +18,8 @@
     "react": "^17.0.2",
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
-    "react-reveal": "^1.2.2"
+    "react-reveal": "^1.2.2",
+    "react-ui": "^1.0.0-beta.32"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
