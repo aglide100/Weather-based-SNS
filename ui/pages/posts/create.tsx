@@ -1,9 +1,12 @@
 import React, { useRef, useState, useEffect, ReactElement } from "react";
 import Editor from "@monaco-editor/react";
-import { InputField, ValidationResult } from "../../components/InputField";
 import { Button } from "../../components/Button";
 import { AnimatePresence, motion } from "framer-motion";
 import { TagDumpData } from "../../test/TagDumpData";
+import classNames from "classnames";
+import { useRouter } from "next/router";
+import { TodayWeatherData, WeatherProps } from "../../test/TodayWeaherData";
+import WeatherIcon from "../../components/WeatherIcon";
 
 type TagPopUpProps = {
   isBaseClick: boolean;
@@ -12,18 +15,21 @@ type TagPopUpProps = {
   onChageClickedTag(tag: any): void;
 };
 
+type CategoryList = "cloth" | "food" | "daily" | "etc" | string;
+
 const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
   let popUpContent: ReactElement;
   const [inputValue, setInputValue] = useState<string>("");
   const [selectTag, setSelectTag] = useState<string[]>([]);
 
   function onClickTagHandle(tag: string) {
-    setSelectTag((old) => [...old, tag]);
+    const data = selectTag;
+    data.push(tag);
+    setSelectTag([...data]);
     props.onChageClickedTag(selectTag);
   }
 
   function onClickDeleteTagHandle(clickedTag: string) {
-    console.log(selectTag);
     setSelectTag((selectTag) => selectTag.filter((tag) => tag != clickedTag));
     props.onChageClickedTag(selectTag);
   }
@@ -36,7 +42,7 @@ const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
         if (index == 0) {
           return (
             <span
-              className="text-gray-400 text-sm"
+              className="text-sm z-20"
               onClick={(e) => {
                 e.preventDefault();
                 onClickDeleteTagHandle(tag);
@@ -49,7 +55,7 @@ const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
         } else {
           return (
             <span
-              className="text-gray-400 text-sm"
+              className="text-sm z-20"
               key={"tag_" + index}
               onClick={(e) => {
                 e.preventDefault();
@@ -153,12 +159,18 @@ const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
 };
 
 const CreatePostPage: React.FC<{}> = () => {
+  const router = useRouter();
+  let initCategory: CategoryList;
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPopUpOpend, setIsPopUpOpend] = useState<boolean>(false);
   const [isBaseClick, setIsBaseClick] = useState<boolean>(false);
   const [isCustomClick, setIsCustomClick] = useState<boolean>(false);
+  const [todayWeather, setTodayWeaher] = useState<WeatherProps>();
   const [selectTag, setSelectTag] = useState<string[]>([]);
   const [content, setContent] = useState<string>("");
+  const [selectCategory, setSelectCategory] = useState<CategoryList>();
+  const [weatherElement, setWeatherElement] = useState<ReactElement>();
 
   const [baseTag, setBaseTag] = useState([]);
   const [customTag, setCustomTag] = useState([]);
@@ -169,13 +181,41 @@ const CreatePostPage: React.FC<{}> = () => {
     setSelectTag((selectTag) => selectTag.filter((tag) => tag != clickedTag));
   }
 
+  useEffect(() => {
+    if (router.isReady || !isLoading) {
+      // weather, fetch
+      setTodayWeaher(TodayWeatherData);
+
+      let weather: ReactElement = (
+        <div className="z-20 flex flex-col items-center">
+          <div className="w-20 h-20">
+            <WeatherIcon icon={TodayWeatherData.kind} />
+          </div>
+          <div className="flex flex-row w-full justify-around">
+            <div>
+              <span className="text-sm">습도: {TodayWeatherData.humidity}</span>
+            </div>
+            <div>
+              <span className="text-base">{TodayWeatherData.temp}도</span>
+            </div>
+          </div>
+          <div className="text-lg">{TodayWeatherData.address}</div>
+        </div>
+      );
+
+      setWeatherElement(weather);
+
+      setIsLoading(true);
+    }
+  });
+
   let tagList;
   if (selectTag != undefined || selectTag != null) {
     tagList = selectTag.map((tag, index) => {
       if (index == 0) {
         return (
           <span
-            className="text-gray-400 text-sm"
+            className="text-gray-400 text-sm underline "
             onClick={(e) => {
               e.preventDefault();
               onClickDeleteTagHandle(tag);
@@ -188,7 +228,7 @@ const CreatePostPage: React.FC<{}> = () => {
       } else {
         return (
           <span
-            className="text-gray-400 text-sm"
+            className="text-gray-400 text-sm underline "
             key={"tag_" + index}
             onClick={(e) => {
               e.preventDefault();
@@ -232,22 +272,79 @@ const CreatePostPage: React.FC<{}> = () => {
   }
 
   function onClickedSelectTag(taglist: any) {
+    console.log(tagList);
     setSelectTag(taglist);
   }
 
   return (
-    <div className="flex flex-col items-center p-10">
-      <div className="w-full mb-10">
+    <div className="flex flex-col items-center p-10 text-2xl ">
+      <div className="w-full mb-1 flex flex-row">
         <input
           type="text"
           name="postTitle"
-          className="w-full border"
+          className="w-full h-20 border-2 shadow-md rounded hover:bg-gray-200 duration-75"
           value={postTitle}
           onChange={(e) => {
             setPostTitle(e.target.value);
           }}
           placeholder="제목을 입력해주세요"
         />
+        <div className="absoulte flex flex-col">
+          {isLoading ? <>{weatherElement}</> : <></>}
+        </div>
+      </div>
+      <div className="w-full flex flex-row justify-start mb-6">
+        <div
+          className={classNames("", {
+            "opacity-50": selectCategory === "cloth",
+          })}
+          onClick={(e) => {
+            e.preventDefault();
+
+            setSelectCategory("cloth");
+          }}
+        >
+          👔
+          {/* <img src="/cloth.png" className="w-8 h-8" /> */}
+        </div>
+        <div
+          className={classNames("", {
+            "opacity-50": selectCategory === "food",
+          })}
+          onClick={(e) => {
+            e.preventDefault();
+
+            setSelectCategory("food");
+          }}
+        >
+          🍱
+          {/* <img src="/food.png" className="w-8 h-8" /> */}
+        </div>
+        <div
+          className={classNames("", {
+            "opacity-50": selectCategory === "daily",
+          })}
+          onClick={(e) => {
+            e.preventDefault();
+
+            setSelectCategory("daily");
+          }}
+        >
+          🤾
+          {/* <img src="/daily.png" className="w-8 h-8" /> */}
+        </div>
+        <div
+          className={classNames("", {
+            "opacity-50": selectCategory === "etc",
+          })}
+          onClick={(e) => {
+            e.preventDefault();
+
+            setSelectCategory("etc");
+          }}
+        >
+          ✨{/* <img src="/etc.png" className="w-8 h-8" /> */}
+        </div>
       </div>
 
       <div className="w-full flex flex-col flex-start">
@@ -266,31 +363,32 @@ const CreatePostPage: React.FC<{}> = () => {
           </motion.div>
         </AnimatePresence>
         <div
-          className="w-full mb-10 flex flex-start"
+          className="w-full mb-10 h-14 border-2 shadow-md rounded hover:bg-gray-200 duration-75 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             setIsBaseClick(true);
           }}
         >
-          <div># 기본태그</div>
+          <div className="ml-1 text-sm"># 기본태그</div>
           <span>{tagList}</span>
         </div>
 
         <div
-          className="w-full mb-10"
+          className="w-full mb-10 h-14 border-2 shadow-md rounded hover:bg-gray-200 duration-75 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             setIsCustomClick(true);
           }}
         >
-          <div># 사용자태그</div>
-          <span>{tagList}</span>
+          <div className="ml-1 text-sm"># 사용자태그</div>
+
+          {/* <span>{tagList}</span> */}
         </div>
       </div>
-      <div className="w-full  border border-solid border-bombard_gray-3 p-2 shadow-md rounded-2px">
+      <div className="w-full border border-solid border-bombard_gray-3 p-2 shadow-md rounded-2px">
         <Editor
           options={{ minimap: { enabled: false } }}
-          height="500px"
+          height="300px"
           defaultLanguage="markdown"
           defaultValue="내용을 입력해주세요!"
           onChange={handleEditorChange}
@@ -299,7 +397,7 @@ const CreatePostPage: React.FC<{}> = () => {
       <div className="w-full flex justify-end mt-5 mr-5">
         <Button
           type={"button"}
-          color={"purple"}
+          color={"white"}
           isDisabled={false}
           size={"medium"}
           onClick={(e) => {}}

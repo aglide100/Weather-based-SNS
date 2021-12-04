@@ -15,7 +15,7 @@ export default function UsingMobileWrapper({
     <div className="w-screen h-screen flex flex-row justify-center bg-gray-400">
       <div
         className={classNames(
-          "bg-white w-96 sm:w-6/12 overflow-scroll overflow-x-hidden",
+          "bg-white w-96 sm:w-6/12 overflow-scroll overflow-x-hidden z-10",
           {
             "w-screen": router.pathname === "admin",
           }
