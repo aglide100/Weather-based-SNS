@@ -21,8 +21,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-        working-directory: ./ui
+        working-directory: ./
       - run: npm run build --if-present
-        working-directory: ./ui
-      # - run: npm test
-      #   working-directory: ./ui
+        working-directory: ./

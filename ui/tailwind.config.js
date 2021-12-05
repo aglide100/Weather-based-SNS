@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       rotate: ["hover", "group-hover"],
       textColor: ["responsive", "hover", "focus", "group-hover"],
+      right: ["responsive"],
     },
   },
   theme: {
@@ -103,6 +104,7 @@ module.exports = {
         "10%": "10%",
         "24%": "24%",
       },
+
       inset: {
         0.8: "0.2rem",
         1.025: "0.25625rem",
@@ -154,6 +156,12 @@ module.exports = {
         "2vw": "2vw",
         "65vw": "65vw",
       },
+
+      right: {
+        "1/5": "20%",
+        "1/10": "10%",
+      },
+
       borderRadius: {
         "2px": "2px",
         1.25: "0.3125rem",
@@ -162,11 +170,13 @@ module.exports = {
         "15px": "0.9375rem",
         "20px": "1.25rem",
       },
+
       minWidth: {
         50: "12.5rem",
         83.75: "20.9375rem",
         97.03: "24.2475rem",
       },
+
       fontSize: {
         "11px": "0.6875rem",
         "13px": "0.8215rem",

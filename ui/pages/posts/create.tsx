@@ -124,9 +124,9 @@ const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="absolute w-5/12 h-80 z-30 flex justify-center flex-col"
+      className="fixed w-screen h-80 z-30 flex justify-center flex-col"
     >
-      <div className="absolute w-full h-80 border-4 border-blue-300  bg-white rounded-lg flex flex-col justify-between">
+      <div className="fixed w-3/4 sm:w-2/4  h-80 border-4 border-blue-300  bg-white rounded-lg flex flex-col justify-between z-20">
         <div>{popUpContent}</div>
         <div>{tagList}</div>
         <div>{selectedTagList}</div>
@@ -175,14 +175,14 @@ const CreatePostPage: React.FC<{}> = () => {
   const [baseTag, setBaseTag] = useState([]);
   const [customTag, setCustomTag] = useState([]);
 
-  const [postTitle, setPostTitle] = useState<string>("");
+  const [postTitle, setPostTitle] = useState<string>();
 
   function onClickDeleteTagHandle(clickedTag: string) {
     setSelectTag((selectTag) => selectTag.filter((tag) => tag != clickedTag));
   }
 
   useEffect(() => {
-    if (router.isReady || !isLoading) {
+    if (router.isReady && !isLoading) {
       // weather, fetch
       setTodayWeaher(TodayWeatherData);
 
@@ -285,6 +285,7 @@ const CreatePostPage: React.FC<{}> = () => {
           className="w-full h-20 border-2 shadow-md rounded hover:bg-gray-200 duration-75"
           value={postTitle}
           onChange={(e) => {
+            e.preventDefault();
             setPostTitle(e.target.value);
           }}
           placeholder="제목을 입력해주세요"
@@ -305,7 +306,6 @@ const CreatePostPage: React.FC<{}> = () => {
           }}
         >
           👔
-          {/* <img src="/cloth.png" className="w-8 h-8" /> */}
         </div>
         <div
           className={classNames("", {
@@ -318,7 +318,6 @@ const CreatePostPage: React.FC<{}> = () => {
           }}
         >
           🍱
-          {/* <img src="/food.png" className="w-8 h-8" /> */}
         </div>
         <div
           className={classNames("", {
@@ -331,7 +330,6 @@ const CreatePostPage: React.FC<{}> = () => {
           }}
         >
           🤾
-          {/* <img src="/daily.png" className="w-8 h-8" /> */}
         </div>
         <div
           className={classNames("", {
@@ -342,26 +340,31 @@ const CreatePostPage: React.FC<{}> = () => {
 
             setSelectCategory("etc");
           }}
-        >
-          ✨{/* <img src="/etc.png" className="w-8 h-8" /> */}
-        </div>
+        ></div>
       </div>
 
       <div className="w-full flex flex-col flex-start">
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <motion.div ref={wrapperRef}>
-            {isBaseClick || isCustomClick ? (
-              <TagPopUp
-                isBaseClick={isBaseClick}
-                onClickCloseButton={onClickCloseButton}
-                isCustomClick={isCustomClick}
-                onChageClickedTag={onClickedSelectTag}
-              />
-            ) : (
-              ""
-            )}
-          </motion.div>
-        </AnimatePresence>
+        {/* <AnimatePresence exitBeforeEnter initial={false}> */}
+        <motion.div key="popup ui">
+          {isBaseClick || isCustomClick ? (
+            <>
+              <div className="fixed top-0 left-0 w-screen h-screen bg-black z-10 bg-opacity-50" />
+              <motion.div ref={wrapperRef}>
+                <TagPopUp
+                  isBaseClick={isBaseClick}
+                  onClickCloseButton={(e) => {
+                    onClickCloseButton(e);
+                  }}
+                  isCustomClick={isCustomClick}
+                  onChageClickedTag={onClickedSelectTag}
+                />
+              </motion.div>
+            </>
+          ) : (
+            ""
+          )}
+        </motion.div>
+        {/* </AnimatePresence> */}
         <div
           className="w-full mb-10 h-14 border-2 shadow-md rounded hover:bg-gray-200 duration-75 cursor-pointer"
           onClick={(e) => {
@@ -400,7 +403,10 @@ const CreatePostPage: React.FC<{}> = () => {
           color={"white"}
           isDisabled={false}
           size={"medium"}
-          onClick={(e) => {}}
+          onClick={(e) => {
+            e.preventDefault();
+            alert("wip");
+          }}
         >
           등록하기
         </Button>
