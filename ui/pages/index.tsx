@@ -50,10 +50,85 @@ const TodayWeather: React.FC<todayWeatherProps> = (
 const TagList: React.FC<{}> = () => {
   return (
     <div>
+      <div className="divide-y divide-white">
+
+
+
+
+
+
+      <div className="divide-x flex divide-white">
+        <div className="w-1/5">
+        <div>
         <div className="text-2xl mt-5">👕</div>
+        </div>
+        </div>
+
+        <div className="w-4/5 mx-3 mt-3">
+        <div>
+        <div>아우터 - 코트 </div>
+        <div>상의 - 니트/후드티 </div>
+        <div>하의 - 긴바지</div>
+        </div>
+        </div>
+      </div>
+
+
+      <div className="divide-x flex divide-white">
+        <div className="w-1/5">
+        <div>
         <div className="text-2xl mt-5">🍱</div>
+        </div>
+        </div>
+
+
+        <div className="w-4/5 mx-3 mt-5">
+        <div>
+        <div>한식 - 국물요리</div>
+        </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div className="divide-x flex divide-white">
+        <div className="w-1/5">
+        <div>
         <div className="text-2xl mt-5">🤾🏻‍♂</div>
+        </div>
+        </div>
+
+        <div className="w-4/5 mx-3 mt-5">
+        <div>
+        <div>실내활동</div>
+        </div>
+        </div>
+      </div>
+
+
+
+
+
+      <div className="divide-x flex divide-white">
+        <div className="w-1/5">
+        <div>
         <div className="text-2xl mt-5">✨</div>
+        </div>
+        </div>
+        
+        <div className="w-4/5 mx-3 mt-5">
+        <div>
+        <div>비오는 날 듣기 좋은 나만의 플레이리스트</div>
+        </div>
+        </div>
+      </div>
+
+
+
+      </div>
     </div>
   );
 };
@@ -94,7 +169,7 @@ const IndexPage: React.FC<{}> = ({}) => {
   }
   return (
     <div className="flex flex-col w-full mt-10">
-      <div className="flex flex-row justify-around">
+      <div className="flex flex-row justify-around mr-6">
       <div className="text-center">
           오늘의 날씨
           {/* <TodayWeather {...dumpWeatherData}></TodayWeather> */}
@@ -107,7 +182,7 @@ const IndexPage: React.FC<{}> = ({}) => {
           ></TodayWeather>
           </div>
         </div>
-        <div className="box-content h-100 w-40 ">
+        <div className="box-content h-100 w-50">
         <div className="text-center ">추천 태그</div>
         <TagList></TagList>
         </div>
