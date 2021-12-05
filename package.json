@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "weatherBasedSns",
   "version": "1.0.0",
   "description": "",
   "main": "./cmd/**/**.js",
