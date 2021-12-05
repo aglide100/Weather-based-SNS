@@ -93,9 +93,10 @@ const IndexPage: React.FC<{}> = ({}) => {
       <div>
         내가 느낀 오늘의 날씨
         <div className="flex flex-row justify-around">
-          {eventArray.map((data) => {
+          {eventArray.map((data, index) => {
             return (
               <TodayWeatherEvent
+                key={"click_today_weathers_feel" + index}
                 id={data.id}
                 onClickHandler={data.onClickHandler}
               ></TodayWeatherEvent>

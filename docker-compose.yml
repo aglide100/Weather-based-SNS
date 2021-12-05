@@ -18,7 +18,8 @@ services:
     environment:
       VERSION: v1
       DB_USER: table_admin
-      DB_PASSWORD: HeLLo!1
+      DB_NAME: weather_based_SNS
+      DB_PASSWORD: ${USERPWD}
       DB_HOST: app_db
       DB_PORT: 5432
   postgres_wbssns:

@@ -88,10 +88,8 @@ const PostPageList: React.FC<{}> = () => {
                 e.preventDefault();
                 router.push("/posts/create");
               }}
-              className="fixed bottom-10 h-11 w-11 z-20 rounded-full p-1 ring-4"
-              style={{ right: "29%" }}
+              className="fixed bottom-10 h-11 w-11 z-20 rounded-full p-1 ring-4 left-3/4 sm:left-2/3"
             >
-              {" "}
               <svg
                 className="w-full h-full"
                 width="14"
