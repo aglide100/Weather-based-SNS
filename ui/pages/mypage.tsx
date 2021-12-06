@@ -153,10 +153,11 @@ const MyPage: React.FC<{}> = () => {
         </div>
 
             <div>
-              <Grade
+              {/* <Grade
+              
                 nickname={dumpGradeData.nickname}
                 photo={dumpGradeData.photo}
-              ></Grade>
+              ></Grade> */}
             </div>
           </div>
           <div>
