@@ -33,6 +33,7 @@
     "swagger-cli": "^4.0.4",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
+    "tailwindcss": "^3.0.0",
     "uuid": "^8.3.2",
     "yamljs": "^0.3.0"
   },

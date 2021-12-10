@@ -5,29 +5,42 @@ import UsingMobileWrapper from "../components/UsingMobileWrapper";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import "tailwindcss/tailwind.css";
+import { ReactElement, useEffect } from "react";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
 
+  let header: ReactElement;
+  useEffect(() => {
+    if (router.isReady) {
+      if (router.pathname.includes("/admin")) {
+        header = <>{/* passed */}</>;
+      } else {
+        header = (
+          <>
+            <Layout title="Hello for Weather-based-SNS"></Layout>
+          </>
+        );
+      }
+    }
+  }, [router.isReady]);
   return (
-    <>
-      <UsingMobileWrapper>
-        {/* <RequireLogin> */}
-        <AnimatePresence exitBeforeEnter initial={false}>
-          <motion.div
-            key={router.pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Layout title="Weather Based SNS"></Layout>
-            <Component {...pageProps}></Component>
-          </motion.div>
-        </AnimatePresence>
-        {/* </RequireLogin> */}
-      </UsingMobileWrapper>
-    </>
+    <UsingMobileWrapper>
+      {/* <RequireLogin> */}
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <motion.div
+          key={router.pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {header}
+          <Component {...pageProps}></Component>
+        </motion.div>
+      </AnimatePresence>
+      {/* </RequireLogin> */}
+    </UsingMobileWrapper>
   );
 }
 

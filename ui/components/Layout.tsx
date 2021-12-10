@@ -66,8 +66,8 @@ export default function Layout({
             <a>메인</a>
           </Link>{" "}
           | {loginMenu} |{" "}
-          <Link href="/posts">
-            <a>게시글</a>
+          <Link href="/category">
+            <a>메뉴</a>
           </Link>{" "}
         </nav>
       </header>

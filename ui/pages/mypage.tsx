@@ -44,16 +44,16 @@ const PostItem: React.FC<PostItemProps> = (props: PostItemProps) => {
 };
 
 type userProps = {
-    follower: string;
-    follower_cnt: number;
-    following: string;
-    following_cnt:number;
-}
+  follower: string;
+  follower_cnt: number;
+  following: string;
+  following_cnt: number;
+};
 type userGradeProps = {
   nickname: string;
-    photo: string;
-    grade: string;
-}
+  photo: string;
+  grade: string;
+};
 const dumpUserData: userProps = {
   follower: "팔로워",
   follower_cnt: 92,
@@ -67,178 +67,158 @@ const dumpGradeData: userGradeProps = {
   grade: "Green",
 };
 
-const User: React.FC<userProps> = (
-  props: userProps
-) => {
-  return(
+const User: React.FC<userProps> = (props: userProps) => {
+  return (
     <div className="flex flex-col">
       <div className="flex flex-row">
-        {props.follower} {props.following}        
+        {props.follower} {props.following}
       </div>
     </div>
   );
 };
 
-const Grade: React.FC<userGradeProps> = (
-  props: userGradeProps
-) => {
-  return(
+const Grade: React.FC<userGradeProps> = (props: userGradeProps) => {
+  return (
     <div className="flex flex-col text-center mt-5">
       <div className="text-xl">{props.nickname}</div>
-      <div className="border-2 shadow rounded-m"><img src="우수회원 (1).png" width="150px"></img></div>
+      <div className="border-2 shadow rounded-m">
+        <img src="우수회원 (1).png" width="150px"></img>
+      </div>
     </div>
-  ); 
+  );
 };
 
-
 const MyPage: React.FC<{}> = () => {
-    const router = useRouter();
-    const categoryArray = new Array();
-    const [selectCategory, setSelectCategory] = useState<CategoryList>();
+  const router = useRouter();
+  const categoryArray = new Array();
+  const [selectCategory, setSelectCategory] = useState<CategoryList>();
 
-    const [isLoading, setIsLoading] = useState(false);
-    const [postList, setPostList] = useState<ReactElement[]>([]);
-    function onClickPost(post_no: string) {
-      router.push("/posts/" + post_no);
+  const [isLoading, setIsLoading] = useState(false);
+  const [postList, setPostList] = useState<ReactElement[]>([]);
+  function onClickPost(post_no: string) {
+    router.push("/posts/" + post_no);
+  }
+
+  useEffect(() => {
+    if (router.isReady) {
+      let tempPostList = PostDumpDatas.map((post, index) => {
+        return (
+          <li className="px-3" key={"post_" + index}>
+            <PostItem
+              {...post}
+              onClickPost={(e) => {
+                e.preventDefault();
+                onClickPost(post.post_no);
+              }}
+            ></PostItem>
+          </li>
+        );
+      });
+      setPostList(tempPostList);
+      setIsLoading(true);
     }
-  
- 
+  }, [router.isReady]);
 
-    useEffect(() => {
-      if (router.isReady) {
-        let tempPostList = PostDumpDatas.map((post, index) => {
-          return (
-            <li className="px-3" key={"post_" + index}>
-              <PostItem
-                {...post}
-                onClickPost={(e) => {
-                  e.preventDefault();
-                  onClickPost(post.post_no);
-                }}
-              ></PostItem>
-            </li>
-          );
-        });
-        setPostList(tempPostList);
-        setIsLoading(true);
-      }
-    }, [router.isReady]);
-    
-    return (
-        <div className="flex flex-col w-full mt-10 ">
-          <div className="flex flex-row justify-around">
-            <div className="justify-center border-2 shadow rounded-md">
-            <img src="/2.jpg" className="w-40 h-40 "></img> 
-            <div>
-              <div className="flex flex-row">
-          <div className="w-full flex flex-col h-16 text-center border-2 shadow rounded-md">
-          <div className="flex flex-col p-1 text-xs">
-            팔로우
-          </div>
-          <div className="flex flex-col  p-1 text-xl">
-            83
-          </div>
-          </div>
-          <div className="w-full flex flex-col h-16 text-center border-2 shadow rounded-md">
-                  
-          <div className="flex flex-col p-1 text-xs">
-            팔로워
-          </div>
-          <div className="flex flex-col  p-1 text-xl">
-            102
-          </div>
-          </div>
+  return (
+    <div className="flex flex-col w-full mt-10 ">
+      <div className="flex flex-row justify-around">
+        <div className="justify-center border-2 shadow rounded-md">
+          <img src="/2.jpg" className="w-40 h-40 "></img>
+          <div>
+            <div className="flex flex-row">
+              <div className="w-full flex flex-col h-16 text-center border-2 shadow rounded-md">
+                <div className="flex flex-col p-1 text-xs">팔로우</div>
+                <div className="flex flex-col  p-1 text-xl">83</div>
+              </div>
+              <div className="w-full flex flex-col h-16 text-center border-2 shadow rounded-md">
+                <div className="flex flex-col p-1 text-xs">팔로워</div>
+                <div className="flex flex-col  p-1 text-xl">102</div>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
 
-            <div>
-              {/* <Grade
+        <div>
+          {/* <Grade
               
                 nickname={dumpGradeData.nickname}
                 photo={dumpGradeData.photo}
               ></Grade> */}
+        </div>
+      </div>
+      <div>
+        <div className="w-90 h-80 mt-5">
+          <div>
+            <div className="w-full flex flex-row justify-around mb-6">
+              <div
+                className={classNames("", {
+                  "opacity-50": selectCategory === "cloth",
+                })}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setSelectCategory("cloth");
+                }}
+              >
+                👔
+                {/* <img src="/cloth.png" className="w-8 h-8" /> */}
+              </div>
+              <div
+                className={classNames("", {
+                  "opacity-50": selectCategory === "food",
+                })}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setSelectCategory("food");
+                }}
+              >
+                🍱
+                {/* <img src="/food.png" className="w-8 h-8" /> */}
+              </div>
+              <div
+                className={classNames("", {
+                  "opacity-50": selectCategory === "daily",
+                })}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setSelectCategory("daily");
+                }}
+              >
+                🤾
+                {/* <img src="/daily.png" className="w-8 h-8" /> */}
+              </div>
+              <div
+                className={classNames("", {
+                  "opacity-50": selectCategory === "etc",
+                })}
+                onClick={(e) => {
+                  e.preventDefault();
+
+                  setSelectCategory("etc");
+                }}
+              >
+                ✨{/* <img src="/etc.png" className="w-8 h-8" /> */}
+              </div>
+            </div>
+
+            <div className="w-full h-full flex flex-col">
+              <div>{router.query.category}</div>
+              <hr />
+              <div className="relative">
+                {!isLoading ? (
+                  <span>로딩중입니다!</span>
+                ) : (
+                  <ul className="w-full">{postList}</ul>
+                )}
+              </div>
             </div>
           </div>
-          <div>
-            <div
-              className="w-90 h-80 mt-5"
-              >
-                 <div>
-                 <div className="w-full flex flex-row justify-around mb-6">
-    <div
-      className={classNames("", {
-        "opacity-50": selectCategory === "cloth",
-      })}
-      onClick={(e) => {
-        e.preventDefault();
-
-        setSelectCategory("cloth");
-      }}
-    >
-      👔
-      {/* <img src="/cloth.png" className="w-8 h-8" /> */}
-    </div>
-    <div
-      className={classNames("", {
-        "opacity-50": selectCategory === "food",
-      })}
-      onClick={(e) => {
-        e.preventDefault();
-
-        setSelectCategory("food");
-      }}
-    >
-      🍱
-      {/* <img src="/food.png" className="w-8 h-8" /> */}
-    </div>
-    <div
-      className={classNames("", {
-        "opacity-50": selectCategory === "daily",
-      })}
-      onClick={(e) => {
-        e.preventDefault();
-
-        setSelectCategory("daily");
-      }}
-    >
-      🤾
-      {/* <img src="/daily.png" className="w-8 h-8" /> */}
-    </div>
-    <div
-      className={classNames("", {
-        "opacity-50": selectCategory === "etc",
-      })}
-      onClick={(e) => {
-        e.preventDefault();
-
-        setSelectCategory("etc");
-      }}
-    >
-      ✨{/* <img src="/etc.png" className="w-8 h-8" /> */}
-    </div>
-  </div>
-     
-      <div className="w-full h-full flex flex-col">
-      <div>{router.query.category}</div>
-      <hr />
-      <div className="relative">
-        {!isLoading ? (
-          <span>로딩중입니다!</span>
-        ) : (
-          <ul className="w-full">
-            {postList}
-
-          </ul>
-        )}
-      </div>
-    </div>
-      </div>
-              </div>
-          </div>
-          
         </div>
-      );
+      </div>
+    </div>
+  );
 };
 
 export default MyPage;

@@ -14,12 +14,10 @@ export default function UsingMobileWrapper({
   return (
     <div className="w-screen h-screen flex flex-row justify-center bg-gray-400">
       <div
-        className={classNames(
-          "bg-white w-96 sm:w-2/4 overflow-scroll overflow-x-hidden z-10",
-          {
-            "w-screen": router.pathname === "admin",
-          }
-        )}
+        className={classNames("bg-white", {
+          "w-96 sm:w-6/12": router.pathname.includes("admin") === false,
+          "w-screen": router.pathname.includes("admin") === true,
+        })}
       >
         {children}
       </div>
