@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import React, {useState, ReactElement, useEffect} from "react";
 import { TodayWeatherData, WeatherProps } from "../../test/TodayWeaherData";
 import WeatherIcon from "../../components/WeatherIcon";
+import {Button} from "../../components/Button";
+
 
 const Post: React.FC<{}> = () => {
   const router = useRouter();
@@ -36,15 +38,16 @@ const Post: React.FC<{}> = () => {
     }
   });
 
-  return  <div className="p-8"> 👔<div className="w-full flex flex-col mt-5 h-16 justify-center border-2 shadow rounded-md ">
+  return  <div className="p-7"> 👔
+  <div className="w-full flex flex-col mt-5 h-16 justify-center border-2 shadow rounded-md ">
   <div className="flex flex-row justify-around w-full items-center">
 
-    <div className="flex w-80  ml-3"></div>
-    <div className="flex  -mr-1 text-xl " style={{ width: "600%" }}>
+    
+    <div className="flex text-xl ml-5" style={{ width: "600%" }}>
       {/* {props.post_title} */}오늘은 코트가 딱이네요
     </div>
     <div className="flex flex-row items-center w-full">
-      <img className="w-3 h-3 mr-2" src="/like.png" />
+      <img className="w-3 h-3 mr-1" src="/like.png" />
       <span className="text-xs">
         {/* {props.post_like_count} */} 67
         </span>
@@ -56,7 +59,12 @@ const Post: React.FC<{}> = () => {
         {/* {props.post_useful_count} */} 22
       </span>
     </div>
-
+    <div className="flex flex-row items-center w-full">
+      <img className="w-3 h-3 mr-1" src="/싫어요.png" />
+      <span className="text-xs">
+        {/* {props.post_useful_count} */} 5
+      </span>
+    </div>
     <div className="flex flex-row items-center w-full">
       <img className="w-3 h-3 mr-1" src="/사용자2.png" />
       <span className="text-xs">
@@ -66,8 +74,25 @@ const Post: React.FC<{}> = () => {
 
     <hr />
   </div>
-  
 </div>
+<div className="w-full flex flex-col mt-3 h-12 justify-center border-2 shadow rounded-md ">
+  <div className="flex flex-row justify-around w-full items-center">
+    <div className="flex flex-row items-center w-full">
+      <img className="w-5 h-5 ml-5" src="/사용자.png"/>
+      <span className="ml-2 mr-2">
+        {/* {props.user_name} */} 이동휘
+      </span>
+      <Button>팔로우</Button>
+
+      
+    </div>
+    <div className="flex flex-col w-40 item-center">
+      <span className="text-xs">
+        2021년 12월 3일
+      </span>
+    </div>
+    </div>
+    </div>
 <div className="w-full flex flex-row mt-5 h-40 justify-between ">
   <div className="absoulte flex flex-col ml-5">
           {isLoading ? <>{weatherElement}</> : <></>}
