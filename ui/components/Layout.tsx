@@ -30,6 +30,10 @@ export default function Layout({
           |{" "}
           <Link href="/signup">
             <a>회원가입</a>
+          </Link>{" "}
+          |{" "}
+          <Link href="/admin">
+            <a>admin</a>
           </Link>
         </>
       );

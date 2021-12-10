@@ -1,7 +1,53 @@
-import React, { ReactComponentElement, ReactElement, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import React, { ReactComponentElement, ReactElement, useEffect, useRef, useState } from "react";
+import router, { useRouter } from "next/router";
 import { Button } from "../components/Button";
 //import "../styles/nav.css";
+import  {CompanyProps} from "../../pkg/core/api/v1/common/CompanyProps"
+import  {AdvertiseHistoryProps} from "../../pkg/core/api/v1/common/AdvertiseHistoryProps"
+// import  {AdvertiseProps} from "../../pkg/core/api/v1/common/AdvertiseProps"
+
+import axios from "axios";
+
+type compnayListItemProps = CompanyProps 
+const CompanyListItme:React.FC<compnayListItemProps> =  (props: compnayListItemProps) => {
+
+  const [adDate, setAdDate] = useState<string>("")
+  const [adPaymanet, setAdPaymanet] = useState<string>("")
+  const [adPrice, setAdPrice] = useState<number>(0)
+
+
+  return (<>
+    <tr onClick={(e) => {
+      e.preventDefault();
+      // for test
+      router.push("/admin/~~~" + props.com_no)
+    }}>
+        <td className="p-2 whitespace-nowrap">
+          <div className="flex items-center">
+            <div className="font-medium text-gray-800"></div>
+          </div>
+        </td>
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-left">{props.com_name}</div>
+        </td>
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-left font-medium text-green-500">
+            {adDate}
+          </div>
+        </td>
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-center font-medium"></div>
+        </td>
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-center">{adPaymanet}</div>
+        </td>
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-center">{adPrice}</div>
+        </td>
+      </tr>
+      <tr>
+    </tr></>)
+}
 
 const nav: ReactElement = (
   <div>
@@ -85,227 +131,53 @@ const nav: ReactElement = (
   </div>
 );
 
-const adList: ReactElement = (
-  <div className="flex flex-row bg-purple-900 w-full h-screen px-4 text-gray-900 0border border-purple-90">
-    <div className="antialiased w-full bg-gray-100 text-gray-600 px-4">
-      <div className="flex flex-col justify-center h-full">
-        <div className="w-full max-w-7xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-          <header className="px-5 py-4 border-b border-gray-100">
-            <h2 className="font-semibold text-gray-800">광 고 등 록 내 역</h2>
-          </header>
-          <div className="p-3">
-            <div className="overflow-x-auto">
-              <table className="table-auto w-full">
-                <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                  <tr>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-left">광고번호</div>
-                    </th>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-left">업체명</div>
-                    </th>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-left">기간</div>
-                    </th>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-center">광고비용</div>
-                    </th>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-center">결제수단</div>
-                    </th>
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-center">노출횟수</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm divide-y divide-gray-100">
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="font-medium text-gray-800">1</div>
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left">즐거운 밥상</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        2021-11-01 ~ 2022-10-31
-                      </div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center font-medium">30000000</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">신용카드</div>
-                    </td>
-                    <td className="p-2 whitespace-nowrap">
-                      <div className="text-center">25000</div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 const AdminPage: React.FC<{}> = ({}) => {
   const router = useRouter();
+
+  let companyList:ReactElement[];
+  const [listData, setListData ] = useState<CompanyProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  if (listData != undefined)  {
+    companyList = listData.map((arg, index) => {
+      return <li key={"com_"+index}><CompanyListItme {...arg} ></CompanyListItme></li>
+    })
+  } else {
+    companyList = [<></>]
+  }
+
+
+  useEffect(() => {
+    if (!isLoading) {
+      axios.get("https://wbsnsapi.non-contact-karaoke.xyz/api/v1/com/list").then((res) => {
+        const list = res.data
+
+        let comArray = new Array()
+        if (list != undefined) {
+          list.map((com) => {
+            let newCom: CompanyProps = {
+              com_no: com.com_no,
+              com_name: com.com_name,
+              com_phone: com.com_phone,
+              com_ceo: com.com_ceo,
+              com_regis_no: com.com_regis_no,
+            }
+            comArray.push(newCom)
+          })
+        }
+
+        setListData(comArray)
+        setIsLoading(true)
+      })
+    }
+  })
 
   return (
     <div className="w-screen flex flex-row justify-start">
       <nav className="flex flex-col bg-purple-900 w-64 h-screen px-4 tex-gray-900 border border-purple-900">
         {nav}
       </nav>
-      {adList}
+      {companyList}
     </div>
   );
 };
