@@ -28,7 +28,7 @@ export class UseRouter {
     handler: Handler
   ) {
     this.rules.push({ pattern: pattern, method: method, handler: handler });
-    console.log("add router rule : ", "api/"+ method, pattern);
+    console.log("add router rule : ", method, "api/"+pattern);
   }
 
   private handleRoute() {

@@ -25,6 +25,14 @@ class BaseController {
             user: member.mem_name,
         };
     }
+    handlingErr(req, res, err) {
+        res.status(400);
+        res.send("Error! " + err.toString());
+        // wip
+    }
+    setHeader(res) {
+        // wip
+    }
     authenticateAccessToken(token) {
         if (token == undefined) {
             return null;

@@ -30,6 +30,7 @@ class MemberController extends baseController_1.BaseController {
     list() {
         return (req, res) => {
             console.log("returns Member list");
+            this.setHeader(res);
             memberDao_1.MemberDao.getInstance().selectAllMember(function (result) {
                 res.send(JSON.stringify(result));
             });
@@ -38,6 +39,7 @@ class MemberController extends baseController_1.BaseController {
     login() {
         return (req, res) => {
             console.log("request member " + req.body.mem_id + " login");
+            this.setHeader(res);
             const newUser = {
                 mem_id: req.body.bodymem_id,
                 mem_pw: req.body.bodymem_pw,
@@ -59,6 +61,7 @@ class MemberController extends baseController_1.BaseController {
     join() {
         return (req, res) => {
             console.log("request member " + req.body.mem_name + " join");
+            this.setHeader(res);
             const id = uuid.v4();
             const newUser = {
                 mem_id: req.body.bodymem_id,

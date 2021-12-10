@@ -17,6 +17,7 @@ const pg_1 = require("pg");
 const console_1 = __importDefault(require("console"));
 class BaseDao {
     constructor() {
+        BaseDao.havingErr = false;
         let DBUser = process.env.DB_USER;
         let DBPassword = process.env.DB_PASSWORD;
         let DBHost = process.env.DB_HOST;
@@ -50,22 +51,29 @@ class BaseDao {
         }
         if (DBName == undefined) {
             console_1.default.log("Can't read DBName in Env file! I'll use default DBName!");
-            this.config.user = "weather_based_SNS";
+            this.config.database = "weather_based_SNS";
         }
     }
     connectDB() {
         return __awaiter(this, void 0, void 0, function* () {
-            BaseDao.client = new pg_1.Pool(this.config);
-            yield BaseDao.client.connect();
+            BaseDao.pool = new pg_1.Pool(this.config);
+            try {
+                yield BaseDao.pool.connect();
+            }
+            catch (e) {
+                setTimeout(() => {
+                    console_1.default.log("Can't access db... retry connect...");
+                    this.connectDB();
+                }, 5000);
+            }
         });
     }
-    getClient() {
-        if (!BaseDao.client) {
+    getPool() {
+        if (!BaseDao.pool || BaseDao.havingErr) {
             console_1.default.log("Creating baseDAO...");
-            BaseDao.client = new pg_1.Pool(this.config);
+            BaseDao.pool = new pg_1.Pool(this.config);
         }
-        this.connectDB();
-        return BaseDao.client;
+        return BaseDao.pool;
     }
 }
 exports.BaseDao = BaseDao;

@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Response, Request } from "express";
 import { MemberProps } from "../api/v1/common/MemberProps";
 
 const jwt = require("jsonwebtoken");
@@ -29,6 +29,16 @@ export class BaseController {
       refreshToken: refresh,
       user: member.mem_name,
     };
+  }
+
+  protected handlingErr(req: Request, res: Response, err:any ){
+    res.status(400)
+    res.send("Error! " + err.toString())
+    // wip
+  }
+  
+  protected setHeader(res: Response) {
+    // wip
   }
 
   protected authenticateAccessToken(token: "" | undefined | string) {

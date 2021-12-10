@@ -9,7 +9,7 @@ class UseRouter {
     }
     addRule(pattern, method, description, tag, handler) {
         this.rules.push({ pattern: pattern, method: method, handler: handler });
-        console.log("add router rule : ", "api/" + method, pattern);
+        console.log("add router rule : ", method, "api/" + pattern);
     }
     handleRoute() {
         this.rules.map((rule) => {

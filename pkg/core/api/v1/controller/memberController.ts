@@ -12,6 +12,7 @@ export class MemberController extends BaseController {
   public list(): Handler {
     return (req: Request, res: Response) => {
       console.log("returns Member list");
+      this.setHeader(res);
 
       MemberDao.getInstance().selectAllMember(function (result: any) {
         res.send(JSON.stringify(result));
@@ -22,6 +23,7 @@ export class MemberController extends BaseController {
   public login(): Handler {
     return (req: Request, res: Response) => {
       console.log("request member " + req.body.mem_id + " login");
+      this.setHeader(res);
       const newUser: MemberProps = {
         mem_id: req.body.bodymem_id,
         mem_pw: req.body.bodymem_pw,
@@ -47,6 +49,7 @@ export class MemberController extends BaseController {
   public join(): Handler {
     return (req: Request, res: Response) => {
       console.log("request member " + req.body.mem_name + " join");
+      this.setHeader(res);
 
       const id = uuid.v4();
       const newUser: MemberProps = {
