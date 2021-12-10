@@ -27,7 +27,15 @@ class CompanyController extends baseController_1.BaseController {
     }
     getCompanyDetail() {
         return (req, res) => {
-            console.log("returns Company Detail");
+            console.log("returns Company Detail" + req.params.com_no);
+            let data = {
+                com_no: 0,
+                com_ceo: "홍길동",
+                com_name: "(주) 즐거운밥상",
+                com_phone: "041-558-0615",
+                com_regis_no: "133-10-22851"
+            };
+            res.send(JSON.stringify(data));
         };
     }
 }

@@ -1,5 +1,5 @@
 export type PostProps = {
-  post_no: string;
+  post_no: number;
   post_content: string;
   post_view_count: number;
   post_kind: string;
@@ -9,5 +9,5 @@ export type PostProps = {
   //   like 테이블에서 join할것
   post_like_count?: number;
   post_useful_count?: number;
-  mem_no: string;
+  mem_no: number;
 };

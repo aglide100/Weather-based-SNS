@@ -108,7 +108,7 @@ const MyPage: React.FC<{}> = () => {
               {...post}
               onClickPost={(e) => {
                 e.preventDefault();
-                onClickPost(post.post_no);
+                onClickPost(post.post_no.toString());
               }}
             ></PostItem>
           </li>

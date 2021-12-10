@@ -7,7 +7,7 @@
     "tsc": "tsc ",
     "tsc-init": "tsc --init",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"babel-node cmd/webd/webd.js\" \"babel-node cmd/apid/apid.js\"",
+    "start": "concurrently \"npm run start --prefix ui\" \"babel-node cmd/apid/apid.js\"",
     "start-origin": "babel-node cmd/webd/webd.js",
     "build": "tsc -p ."
   },

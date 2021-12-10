@@ -4,7 +4,7 @@
     "dev": "next",
     "build": "next build",
     "make": "next build && next export",
-    "start": "next start",
+    "start": "next start -p 10200",
     "start-tls": "node server.js",
     "type-check": "tsc"
   },

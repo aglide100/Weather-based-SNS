@@ -2,6 +2,8 @@ import express from "express";
 import { UseRouter } from "../../pkg/core/router/useRouter";
 import { MemberController } from "../../pkg/core/api/v1/controller/memberController";
 import { CompanyController} from "../../pkg/core/api/v1/controller/companyController"
+import { AdController } from "../../pkg/core/api/v1/controller/adController"
+import { PostController } from "../../pkg/core/api/v1/controller/postController";
 
 let apiVersion = process.env.VERSION;
 if (apiVersion == undefined) {
@@ -15,19 +17,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const server = new UseRouter(app, apiVersion);
-const MemberCtrl = new MemberController();
-const CompanyCtrl = new CompanyController();
+const memberCtrl = new MemberController();
+const companyCtrl = new CompanyController();
+const adCtrl = new AdController()
+const postCtrl = new PostController()
 
 const cors = require("cors");
-app.use(cors());
+// cors 허용 
+app.use(cors({ origin: "http://localhost:3000/"}));
 
+// api/v1/~
 if (apiVersion == "v1") {
   server.addRule(
     apiVersion + "/member/list",
     "GET",
     "member list",
     "Member list",
-    MemberCtrl.list()
+    memberCtrl.list()
   );
 
   server.addRule(
@@ -35,7 +41,7 @@ if (apiVersion == "v1") {
     "POST",
     "member join",
     "Member Join",
-    MemberCtrl.join()
+    memberCtrl.join()
   );
 
   server.addRule(
@@ -43,7 +49,7 @@ if (apiVersion == "v1") {
     "POST",
     "login member",
     "Member",
-    MemberCtrl.login()
+    memberCtrl.login()
   );
 
   server.addRule(
@@ -51,8 +57,25 @@ if (apiVersion == "v1") {
     "GET",
     "company list",
     "Com",
-    CompanyCtrl.getCompanyList()
+    companyCtrl.getCompanyList()
   );
+
+  server.addRule(
+    apiVersion + "/post/:post_no",
+    "GET",
+    "get Post detail",
+    "post",
+    postCtrl.getPostDetail()
+  );
+
+  server.addRule(
+    apiVersion + "/adhistory/:com_no",
+    "GET",
+    "get Advertise history detail",
+    "ad history",
+    adCtrl.getAdHistory()
+  );
+
 }
 
 server.listen(port);
