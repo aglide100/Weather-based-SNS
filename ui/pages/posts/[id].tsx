@@ -31,12 +31,11 @@ const Post: React.FC<{}> = () => {
           <div className="text-lg">{TodayWeatherData.address}</div>
         </div>
       );
-
       setWeatherElement(weather);
-
       setIsLoading(true);
     }
   });
+
 
   return  <div className="p-7"> 👔
   <div className="w-full flex flex-col mt-5 h-16 justify-center border-2 shadow rounded-md ">
