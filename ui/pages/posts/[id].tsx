@@ -83,8 +83,6 @@ const Post: React.FC<{}> = () => {
         {/* {props.user_name} */} 이동휘
       </span>
       <Button>팔로우</Button>
-
-      
     </div>
     <div className="flex flex-col w-40 item-center">
       <span className="text-xs">
