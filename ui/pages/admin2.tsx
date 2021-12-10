@@ -431,28 +431,31 @@ const AdminPage: React.FC<{}> = ({}) => {
       <div className="flex flex-row bg-purple-900 w-full h-screen px-4 text-gray-900 0border border-purple-90">
         <div className="antialiased w-full bg-gray-100 text-gray-600 px-4">
           <div className="flex flex-col justify-center h-full">
-            <div className="w-full max-w-xs mx-auto bg-white rounded-sm border border-gray-200">
-              <header className="px-5 py-4 border-b border-gray-100">
-                <h2 className="font-semibold text-gray-800">(주)즐거운밥상</h2>
-              </header>
+            <div className="grid grid-cols-2 divide-x ">
+              <div>
+                <div className="w-full max-w-xs mx-auto bg-white rounded-sm border border-gray-200">
+                  <header className="px-5 py-4 border-b border-gray-100">
+                    <h2 className="font-semibold text-gray-800">
+                      (주)즐거운밥상
+                    </h2>
+                  </header>
+                </div>
+              </div>
+
+              <div>
+                <div className="max-w-xl mx-auto bg-white rounded-sm border border-gray-200">
+                  <div>
+                    <header className="px-5 py-4 border-b border-gray-100">
+                      <span className="p-2 text-gray-800">041-558-0615</span>
+                      <h2 className="p-2 text-gray-800">박찬무</h2>
+                    </header>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-2 divide-x divide-green-500">
-              <div
-                className="w-full max-w-3xl mx-auto bg-white rounded-sm border border-gray-200"
-                style={{
-                  maxWidth: "60rem",
-                }}
-              >
-                <div>
-                <header className="px-5 py-4 border-b border-gray-100">
-                  <span className="p-2 text-gray-800">041-558-0615</span>
-                  <h2 className="p-2 text-gray-800">박찬무</h2>
-                </header>
-              </div>
-              <div className="mt-10">{sponList}</div>
-              <div className="mt-10">{adList}</div>
-            </div>
+            <div className="mt-10">{sponList}</div>
+            <div className="mt-10">{adList}</div>
           </div>
         </div>
       </div>
