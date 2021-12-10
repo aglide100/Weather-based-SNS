@@ -12,7 +12,7 @@ export class BaseDao {
     let DBPort = process.env.DB_PORT;
     let DBName = process.env.DB_NAME;
     if (DBPort == undefined) {
-      DBPort = "5432";
+      DBPort = "6000";
     }
     this.config = {
       user: DBUser,
@@ -24,19 +24,19 @@ export class BaseDao {
 
     if (DBPort == undefined) {
       console.log("Can't read DBPort in Env file! I'll use default port!");
-      this.config.port = 5432;
+      this.config.port = 6000;
     }
 
     if (DBPassword == undefined) {
       console.log(
         "Can't read DBPassword in Env file! I'll use default DBPassword!"
       );
-      this.config.password = "HeLLo!1";
+      this.config.password = "qweras123#";
     }
 
     if (DBHost == undefined) {
       console.log("Can't read DBHost in Env file! I'll use default DBHost!");
-      this.config.host = "localhost";
+      this.config.host = "aglide100.iptime.org";
     }
 
     if (DBUser == undefined) {

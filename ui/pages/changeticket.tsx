@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Image from 'next/image'
 
 type PromotionPost = {
     title: string; // 제목
@@ -18,9 +17,9 @@ const PromotionPost: React.FC<{}> = () => {
         <div className=' box-content h-100 w-50
         m-auto bg-white rounded-xl shadow-md overflow-hidden border-2'>
           <div className='h-56 object-cover relative'>
-            <Image
+            <img
               src='/교환권_갤러리아포레스트_정방향.png'
-              layout='fill'
+              className="object-fill"
             />
           </div>
           <div className='flex'>
@@ -31,9 +30,9 @@ const PromotionPost: React.FC<{}> = () => {
               갤러리아 포레스트 이용권
               <div className='flex flex-row mt-5 text-gray-700 '>
                 <div className='w-12 h-12 object-cover relative '>
-                    <Image
+                    <img
                     src='/ticket.png'
-                    layout='fill'
+                    className="object-fill"
                     />
                 </div>
                 <div className='mt-6'>
@@ -53,9 +52,9 @@ const PromotionPost: React.FC<{}> = () => {
         <div className='box-content h-100 w-50
         m-auto bg-white rounded-xl shadow-md overflow-hidden border-2'>
         <div className='h-56 object-cover relative'>
-            <Image
+            <img
               src='/교환권_갤러리아포레스트_정방향.png'
-              layout='fill'
+              className="object-fill"
             />
           </div>
           <div className='flex'>
@@ -67,9 +66,9 @@ const PromotionPost: React.FC<{}> = () => {
             </div>
             <div className='flex flex-row mt-5 text-gray-700 '>
                 <div className='w-12 h-12 object-cover relative '>
-                    <Image
+                    <img
                     src='/ticket.png'
-                    layout='fill'
+                    className="object-fill"
                     />
                 </div>
                 <div className='mt-6'>

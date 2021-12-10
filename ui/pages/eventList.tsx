@@ -1,6 +1,5 @@
 import React from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 type PromotionPost = {
   title: string; // 제목
@@ -17,7 +16,7 @@ const PromotionPost: React.FC<{}> = () => {
         m-auto bg-white rounded-xl shadow-md overflow-hidden border-2"
         >
           <div className="h-56 object-cover relative">
-            <Image src="/프로모션정방향.png" layout="fill" />
+            <img src="/프로모션정방향.png" className="object-fill" />
           </div>
           <div className="flex">
             <div className="p-8">
@@ -41,7 +40,7 @@ const PromotionPost: React.FC<{}> = () => {
         m-auto bg-white rounded-xl shadow-md overflow-hidden border-2"
         >
           <div className="h-56 object-cover relative">
-            <Image src="/프로모션정방향.png" layout="fill" />
+            <img src="/프로모션정방향.png" className="object-fill" />
           </div>
           <div className="flex">
             <div className="p-8">

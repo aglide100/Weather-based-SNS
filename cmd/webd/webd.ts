@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 
-const port = 3000;
+const port = 10200;
 const uiPath = path.join(__dirname, "../../ui/out");
 const server = express();
 
