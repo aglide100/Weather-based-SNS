@@ -23,6 +23,43 @@ class AdDao extends baseDao_1.BaseDao {
         }
         return AdDao.instance;
     }
+    getAdDetailFromAdNo(ad_no, callback) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log("getAdDetailFromAdNo");
+            const q = `SELECT * FROM "Ad" WHERE ad_no = $1`;
+            let pool = this.getPool();
+            try {
+                yield pool.connect((err, client, release) => {
+                    if (err) {
+                        return err;
+                    }
+                    client.query(q, [ad_no], (err, result) => {
+                        if (err) {
+                            console.log("Can't exec query!", err);
+                            callback(null, err);
+                        }
+                        const list = result.rows;
+                        let dataList = new Array();
+                        list.map((arg) => {
+                            let newAd = {
+                                ad_no: arg.ad_no,
+                                ad_location: arg.ad_location,
+                                ad_content: arg.ad_content,
+                                ad_start_date: arg.ad_start_date,
+                                ad_end_date: arg.ad_end_date,
+                            };
+                            dataList.push(newAd);
+                        });
+                        client.release();
+                        callback(dataList, null);
+                    });
+                });
+            }
+            catch (e) {
+                console.log("Dao Error !", e);
+            }
+        });
+    }
     getAdHistoryFromComNo(com_no, callback) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log("getAdHistoryFromComNo");

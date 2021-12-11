@@ -1,5 +1,5 @@
-export { PostProps } from "./PostProps"
-export { CompanyProps } from "./CompanyProps"
-export { MemberProps } from "./MemberProps"
-export { AdvertiseProps } from "./AdvertiseProps"
-export { AdvertiseHistoryProps } from "./AdvertiseHistoryProps"
+export type { PostProps } from "./PostProps";
+export type { CompanyProps } from "./CompanyProps";
+export type { MemberProps } from "./MemberProps";
+export type { AdvertiseProps } from "./AdvertiseProps";
+export type { AdvertiseHistoryProps } from "./AdvertiseHistoryProps";

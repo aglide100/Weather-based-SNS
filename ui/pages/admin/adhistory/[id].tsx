@@ -1,14 +1,10 @@
 import { useRouter } from "next/router";
 import React, { useState, ReactElement, useEffect } from "react";
-import { TodayWeatherData, WeatherProps } from "../../test/TodayWeaherData";
 import {
   AdvertiseHistoryProps,
   AdvertiseProps,
-} from "../../../pkg/core/api/v1/common";
-import WeatherIcon from "../../components/WeatherIcon";
-import { Button } from "../../components/Button";
+} from "../../../../pkg/core/api/v1/common";
 import axios from "axios";
-import { argv } from "process";
 
 const nav: ReactElement = (
   <div>
@@ -105,21 +101,21 @@ const AdhistoryListItem = (props: AdhistoryListItemProps) => {
             </div>
           </td>
           <td className="p-2 whitespace-nowrap">
-            <div className="text-left">관고 네임</div>
+            <div className="text-left">{props.ad_content}</div>
           </td>
           <td className="p-2 whitespace-nowrap">
             <div className="text-left font-medium text-green-500">
-              2021-11-01 ~ 2022-10-31
+              {props.ad_start_date} ~ {props.ad_end_date}
             </div>
           </td>
           <td className="p-2 whitespace-nowrap">
-            <div className="text-center font-medium">30000000</div>
+            <div className="text-center font-medium">{props.ad_cost}</div>
           </td>
           <td className="p-2 whitespace-nowrap">
-            <div className="text-center">신용카드</div>
+            <div className="text-center">{props.ad_pay_method}</div>
           </td>
           <td className="p-2 whitespace-nowrap">
-            <div className="text-center">25000</div>
+            <div className="text-center">{props.ad_impre_count}</div>
           </td>
         </tr>
       </tbody>
@@ -130,8 +126,6 @@ const AdhistoryListItem = (props: AdhistoryListItemProps) => {
 const AdminPage: React.FC<{}> = ({}) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  //   const [todayWeather, setTodayWeaher] = useState<WeatherProps>();
-  //   const [weatherElement, setWeatherElement] = useState<ReactElement>();
   const [adhistoryList, setAdhistoryList] = useState<AdvertiseHistoryProps[]>(
     []
   );
@@ -139,9 +133,13 @@ const AdminPage: React.FC<{}> = ({}) => {
   let adListElemt: ReactElement[];
   let adMemo = new Array();
   useEffect(() => {
-    if (router.isReady || !isLoading) {
-      // weather, fetch
+    if (router.isReady && !isLoading) {
+      //   com_no!
       console.log("router query", router.query);
+
+      if (isNaN(parseInt(router.query.id[0]))) {
+        alert("check!");
+      }
       let dataList = new Array();
       axios
         .get(
@@ -160,13 +158,16 @@ const AdminPage: React.FC<{}> = ({}) => {
               };
 
               dataList.push(data);
-            });
-            adMemo.map((memo) => {
-              if (memo == res.data.ad_no) {
-                // passed
-              } else {
-                return res.data.ad_no;
-              }
+              adMemo = adMemo.map((memo) => {
+                if (memo == arg.ad_no) {
+                  // passed
+                } else {
+                  console.log("added" + arg.ad_no);
+                  return arg.ad_no;
+                }
+
+                console.log("adMemo: ", adMemo);
+              });
             });
           }
 
@@ -183,11 +184,20 @@ const AdminPage: React.FC<{}> = ({}) => {
                   ad_end_date: res.data.ad_end_date,
                 };
                 adDataArray.push(ad);
+                console.log(ad);
+              })
+              .catch((err) => {
+                alert("Error! :" + err);
+                router.push("/");
               })
               .finally(() => {
                 setAdList(adDataArray);
               });
           });
+        })
+        .catch((err) => {
+          alert("Error! :" + err);
+          router.push("/");
         })
         .finally(() => {
           setAdhistoryList(dataList);

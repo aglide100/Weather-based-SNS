@@ -12,7 +12,7 @@ const Post: React.FC<{}> = () => {
   const [isFollow, setIsFollow] = useState<boolean>(false);
 
   useEffect(() => {
-    if (router.isReady || !isLoading) {
+    if (router.isReady && !isLoading) {
       // weather, fetch
       setTodayWeaher(TodayWeatherData);
 

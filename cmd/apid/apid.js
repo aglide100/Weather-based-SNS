@@ -45,6 +45,7 @@ if (apiVersion == "v1") {
     server.addRule(apiVersion + "/com/:com_no", "GET", "company Detauk", "Com", companyCtrl.getCompanyDetail());
     server.addRule(apiVersion + "/post/list", "GET", "get Post detail", "post", postCtrl.getPostList());
     server.addRule(apiVersion + "/post/:post_no", "GET", "get Post detail", "post", postCtrl.getPostDetail());
+    server.addRule(apiVersion + "/ad/:ad_no", "GET", "get Advertise detail", "ad", adCtrl.getAdDetail());
     server.addRule(apiVersion + "/adhistory/:com_no", "GET", "get Advertise history detail", "ad history", adCtrl.getAdHistoryList());
 }
 process.on("uncaughtException", function (err) {

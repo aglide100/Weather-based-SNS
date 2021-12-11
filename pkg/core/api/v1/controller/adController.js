@@ -7,6 +7,19 @@ class AdController extends baseController_1.BaseController {
     constructor() {
         super();
     }
+    getAdDetail() {
+        return (req, res) => {
+            console.log("getAdDetail", req.params.ad_no);
+            this.setHeader(res);
+            adDao_1.AdDao.getInstance().getAdDetailFromAdNo(parseInt(req.params.ad_no), (response, err) => {
+                if (err != null) {
+                    console.log("Error in Dao", err);
+                    this.handlingErr(req, res, err);
+                }
+                res.send(JSON.stringify(response));
+            });
+        };
+    }
     getAdHistoryList() {
         return (req, res) => {
             console.log("getAdHistory", req.params.com_no);
