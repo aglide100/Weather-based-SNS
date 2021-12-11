@@ -12,7 +12,7 @@ export default function UsingMobileWrapper({
   const router = useRouter();
 
   return (
-    <div className="w-screen h-screen flex flex-row justify-center bg-gray-400">
+    <div className="w-screen flex flex-row justify-center bg-gray-400">
       <div
         className={classNames("bg-white", {
           "w-96 sm:w-6/12": router.pathname.includes("admin") === false,
