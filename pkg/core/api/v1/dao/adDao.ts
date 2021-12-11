@@ -38,22 +38,16 @@ export class AdDao extends BaseDao {
           }
 
           const list = result.rows;
-          let dataList = new Array();
-
-          list.map((arg) => {
-            let newAd: AdvertiseProps = {
-              ad_no: arg.ad_no,
-              ad_location: arg.ad_location,
-              ad_content: arg.ad_content,
-              ad_start_date: arg.ad_start_date,
-              ad_end_date: arg.ad_end_date,
-            };
-
-            dataList.push(newAd);
-          });
+          let newAd: AdvertiseProps = {
+            ad_no: list[0].ad_no,
+            ad_location: list[0].ad_location,
+            ad_content: list[0].ad_content,
+            ad_start_date: list[0].ad_start_date,
+            ad_end_date: list[0].ad_end_date,
+          };
 
           client.release();
-          callback(dataList, null);
+          callback(newAd, null);
         });
       });
     } catch (e) {
