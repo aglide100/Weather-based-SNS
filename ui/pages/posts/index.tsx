@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect, useState } from "react";
 import { PostProps } from "../../../pkg/core/api/v1/common/PostProps";
 import { PostDumpDatas } from "../../test/PostDumpDatas";
 import { WeatherIcon } from "../../components/WeatherIcon";
+import * as axios from "axios";
 
 type PostItemProps = PostProps & {
   onClickPost(e): void;
@@ -45,34 +46,46 @@ const PostItem: React.FC<PostItemProps> = (props: PostItemProps) => {
 
 const PostPageList: React.FC<{}> = () => {
   const router = useRouter();
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [postList, setPostList] = useState<ReactElement[]>([]);
-
-  function onClickPost(post_no: string) {
-    router.push("/posts/" + post_no);
-  }
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [postList, setPostList] = useState([]);
 
   useEffect(() => {
-    if (router.isReady) {
-      let tempPostList = PostDumpDatas.map((post, index) => {
-        return (
-          <li className="px-3" key={"post_" + index}>
-            <PostItem
-              {...post}
-              onClickPost={(e) => {
-                e.preventDefault();
-                onClickPost(post.post_no.toString());
-              }}
-            ></PostItem>
-          </li>
-        );
-      });
-      setPostList(tempPostList);
-      setIsLoading(true);
+    if (!isLoading) {
+      fetchPostList();
     }
-  }, [router.isReady]);
+  }, []);
+  function fetchPostList() {
+    const axiosObj = axios.default;
+    axiosObj.get("https://wbsnsapi.non-contact-karaoke.xyz/api/v1/post/list").then((response) => {
+      setPostList(response.data);
+      setIsLoading(true);
+      });
+    }
+      // function onClickPost(post_no: string) {
+      //   router.push("/posts/" + post_no);
+      // }
+    
+      // useEffect(() => {
+      //   if (router.isReady) {
+      //     let tempPostList = PostDumpDatas.map((post, index) => {
+      //       return (
+      //         <li className="px-3" key={"post_" + index}>
+      //           <PostItem
+      //             {...post}
+      //             onClickPost={(e) => {
+      //               e.preventDefault();
+      //               onClickPost(post.post_no.toString());
+      //             }}
+      //           ></PostItem>
+      //         </li>
+      //       );
+      //     });
+      //     setPostList(tempPostList);
+      //     setIsLoading(true);
+      //   }
+      // }, [router.isReady]);
 
+  
   return (
     <div className="w-full h-full flex flex-col">
       <div>{router.query.category}</div>
