@@ -143,7 +143,7 @@ const AdminPage: React.FC<{}> = ({}) => {
       let dataList = new Array();
       axios
         .get(
-          "https://wbsnsapi.non-contact-karaoke.xyz/api/v1/adhistory/" +
+          "https://wbsnsapi.non-contact-karaoke.xyz/api/v1/adHistory/" +
             router.query.id
         )
         .then((res) => {
@@ -151,30 +151,39 @@ const AdminPage: React.FC<{}> = ({}) => {
             res.data.map((arg) => {
               let data: AdvertiseHistoryProps = {
                 ad_no: arg.ad_no,
-                ad_cost: arg.ad_cose,
+                ad_cost: arg.ad_cost,
                 ad_impre_count: arg.ad_impre_count,
                 ad_pay_method: arg.ad_pay_method,
                 com_no: arg.com_no,
               };
+              console.log("data!!", data);
 
               dataList.push(data);
-              adMemo = adMemo.map((memo) => {
-                if (memo == arg.ad_no) {
-                  // passed
-                } else {
-                  console.log("added" + arg.ad_no);
-                  return arg.ad_no;
-                }
+              adMemo.push(data.ad_no);
+              // adMemo = adMemo.map((memo) => {
+              //   if (memo == arg.ad_no) {
+              //     // passed
+              //   } else {
+              //     console.log("added" + arg.ad_no);
+              //     return arg.ad_no;
+              //   }
 
-                console.log("adMemo: ", adMemo);
-              });
+              //   console.log("adMemo: ", adMemo);
+              // });
             });
           }
 
+          adMemo = adMemo.filter((element, index) => {
+            return adMemo.indexOf(element === index);
+          });
+          console.log("!!! adMemo!", adMemo);
+
+          let adDataArray = new Array();
           adMemo.map((ad) => {
-            let adDataArray = new Array();
             axios
-              .get("https://wbsnsapi.non-contact-karaoke.xyz/api/v1/ad/" + ad)
+              .get(
+                "https://wbsnsapi.non-contact-karaoke.xyz/api/v1/adDetail/" + ad
+              )
               .then((res) => {
                 let ad: AdvertiseProps = {
                   ad_no: res.data.ad_no,
@@ -187,7 +196,7 @@ const AdminPage: React.FC<{}> = ({}) => {
                 console.log(ad);
               })
               .catch((err) => {
-                alert("Error! :" + err);
+                alert("Error! in ad :" + ad + err);
                 router.push("/");
               })
               .finally(() => {
@@ -220,7 +229,7 @@ const AdminPage: React.FC<{}> = ({}) => {
       );
     });
   } else {
-    adListElemt = [<>Loading....</>];
+    adListElemt = [<div key="loading...">Loading....</div>];
   }
 
   return (

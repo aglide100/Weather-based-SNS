@@ -95,7 +95,7 @@ if (apiVersion == "v1") {
   );
 
   server.addRule(
-    apiVersion + "/ad/:ad_no",
+    apiVersion + "/adDetail/:ad_no",
     "GET",
     "get Advertise detail",
     "ad",
@@ -103,7 +103,7 @@ if (apiVersion == "v1") {
   );
 
   server.addRule(
-    apiVersion + "/adhistory/:com_no",
+    apiVersion + "/adHistory/:com_no",
     "GET",
     "get Advertise history detail",
     "ad history",
