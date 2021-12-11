@@ -1,6 +1,11 @@
-import React, { ReactComponentElement, ReactElement, useRef, useState } from "react";
+import React, {
+  ReactComponentElement,
+  ReactElement,
+  useRef,
+  useState,
+} from "react";
 import { useRouter } from "next/router";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button";
 //import "../styles/nav.css";
 
 const nav: ReactElement = (
