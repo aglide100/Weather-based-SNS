@@ -36,12 +36,16 @@ const TodayWeather: React.FC<todayWeatherProps> = (
   props: todayWeatherProps
 ) => {
   return (
-    <div className="flex flex-col">
-      <img src="/rainy.png" className="w-40 h-30 mt-3 mx-9 my-2 my-5"></img>
-      <div className="text-base mr-3">부산광역시 사상구</div>
-      <div>
-        <span className="text-sm mr-3">습도: {props.humidity}</span>
-        <span className="text-base">{props.temp}</span>
+    <div>
+      <div className="flex flex-col">
+        <img src="/rainy.png" className="w-40 h-30 mt-3 mx-9 my-2 my-5"></img>
+        <div className="bg-gray-200 px-10 py-2 rounded-full shadow-m">
+          <div className="text-base mr-3">부산광역시 사상구</div>
+          <div>
+            <span className="text-base mr-3">습도: {props.humidity}</span>
+            <span className="text-base">{props.temp}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -150,10 +154,12 @@ const IndexPage: React.FC<{}> = ({}) => {
   return (
     <div className="flex flex-col w-full mt-10">
       <div className="flex flex-row justify-around mr-6">
-        <div className="text-center">
-          오늘의 날씨
-          {/* <TodayWeather {...dumpWeatherData}></TodayWeather> */}
-          <div className="text-xs"> 21.12.05 15:00 기준</div>
+        <div className="text-center ">
+          <div className="font-semibold text-lg">
+            오늘의 날씨
+            {/* <TodayWeather {...dumpWeatherData}></TodayWeather> */}
+            <div className="text-xs"> 21.12.05 15:00 기준</div>
+          </div>
           <div className="my-2">
             <div className="text-center"></div>
             <TodayWeather
@@ -164,7 +170,7 @@ const IndexPage: React.FC<{}> = ({}) => {
           </div>
         </div>
         <div className="box-content h-100 w-50">
-          <div className="text-center ">추천 태그</div>
+          <div className="text-center font-semibold text-lg">추천 태그</div>
           <TagList></TagList>
         </div>
       </div>
@@ -194,20 +200,20 @@ const IndexPage: React.FC<{}> = ({}) => {
           router.push("/eventList");
         }}
       >
-        <div className="mt-1">
+        <div className="mt-1 ">
           <div className="text-white text-xl font-semibold mx-3">
             {" "}
             진행중인 Event {">"}
           </div>
           <img
             src="/프로모션가로.png"
-            className="w-80 h-50 mt-3 mx-9 my-6"
+            className="w-80 h-50 mt-3 mx-9 my-6 rounded-xl border-4 border-white "
           ></img>
         </div>
       </div>
 
       <div
-        className="w-90 h-70 bg-purple-300 mt-4 mx-4 rounded-xl 
+        className="w-90 h-70 bg-purple-300 mt-4 mx-4 rounded-lg 
         overflow-hidden border-4 border-white"
         onClick={(event) => {
           event.preventDefault();
@@ -220,7 +226,7 @@ const IndexPage: React.FC<{}> = ({}) => {
         </div>
         <img
           src="/교환권_갤러리아포레스트.jpg"
-          className="w-80 h-50 mt-3 mx-9 my-6"
+          className="w-80 h-50 mt-3 mx-9 my-6 rounded-xl border-4 border-white"
         ></img>
       </div>
     </div>

@@ -91,7 +91,7 @@ const nav: ReactElement = (
 
 const AdListItem = (props) => {
   return (
-    <tr>
+    <div>
       <td className="p-2 whitespace-nowrap">
         <div className="flex items-center">
           <div className="font-medium text-gray-800">{props.ad_no}</div>
@@ -119,7 +119,7 @@ const AdListItem = (props) => {
       <td className="p-2 whitespace-nowrap">
         <div className="text-center">{props.ad_impre_count}</div>
       </td>
-    </tr>
+    </div>
   );
 };
 
@@ -152,17 +152,6 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
               adArray.push(data);
             });
           }
-          adArray.sort((a, b) => {
-            let x = a.ad_no;
-            let y = b.ad_no;
-            if (x < y) {
-              return -1;
-            }
-            if (x > y) {
-              return 1;
-            }
-            return 0;
-          });
 
           setAdList(adArray);
 
@@ -239,7 +228,7 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {adListElement}
+                      <tr>{adListElement}</tr>
                     </tbody>
                   </table>
                 </div>

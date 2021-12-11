@@ -16,7 +16,7 @@ const nav: ReactElement = (
       </div>
       <div className="w-1/2">
         <span className="font-semibold text-white ml-1">Admin</span>
-        <button className="mt-2 bg-black text-white px-4 py-2 rounded-md  hover:bg-white hover:text-black">
+        <button className="mt-2 bg-white text-black px-4 py-2 rounded-md  hover:bg-white hover:text-black">
           로그아웃
         </button>
       </div>

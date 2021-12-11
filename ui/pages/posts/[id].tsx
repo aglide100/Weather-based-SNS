@@ -42,30 +42,35 @@ const Post: React.FC<{}> = () => {
   return (
     <div className="p-7">
       {" "}
-      👔
+      <div className="text-2xl mt-5">👔</div>
       <div className="w-full flex flex-col mt-5 h-16 justify-center border-2 shadow rounded-md ">
         <div className="flex flex-row justify-around w-full items-center">
-          <div className="flex text-xl ml-5" style={{ width: "600%" }}>
+          <div
+            className="flex text-xl ml-5 font-semibold"
+            style={{ width: "600%" }}
+          >
             {/* {props.post_title} */}오늘은 코트가 딱이네요
           </div>
           <div className="flex flex-row items-center w-full">
-            <img className="w-3 h-3 mr-1" src="/like.png" />
-            <span className="text-xs">{/* {props.post_like_count} */} 67</span>
+            <img className="w-6 h-6 mr-1" src="/like.png" />
+            <span className="text-xs font-semibold">
+              {/* {props.post_like_count} */} 67
+            </span>
           </div>
 
           <div className="flex flex-row items-center w-full">
-            <img className="w-3 h-3 mr-1" src="/usefull.png" />
-            <span className="text-xs">
+            <img className="w-6 h-6 mr-1" src="/usefull.png" />
+            <span className="text-xs font-semibold">
               {/* {props.post_useful_count} */} 22
             </span>
           </div>
           <div className="flex flex-row items-center w-full">
-            <img className="w-3 h-3 mr-1" src="/싫어요.png" />
+            <img className="w-6 h-6 mr-1" src="/싫어요.png" />
             <span className="text-xs">{/* {props.post_useful_count} */} 5</span>
           </div>
           <div className="flex flex-row items-center w-full">
-            <img className="w-3 h-3 mr-1" src="/사용자2.png" />
-            <span className="text-xs">
+            <img className="w-6 h-6 mr-1" src="/사용자2.png" />
+            <span className="text-xs font-semibold">
               {/* {props.post_lookup_count} */} 582
             </span>
           </div>
@@ -76,10 +81,12 @@ const Post: React.FC<{}> = () => {
       <div className="w-full flex flex-col mt-3 h-12 justify-center border-2 shadow rounded-md ">
         <div className="flex flex-row justify-around w-full items-center">
           <div className="flex flex-row items-center w-full">
-            <img className="w-5 h-5 ml-5" src="/사용자.png" />
-            <span className="ml-2 mr-2">{/* {props.user_name} */} 이동휘</span>
+            <img className="w-8 h-8 ml-5" src="/사용자.png" />
+            <span className="ml-2 mr-2 text-s ">
+              {/* {props.user_name} */} 이동휘
+            </span>
             <Button
-              size={"medium"}
+              size={"mediumlarge"}
               color={isFollow ? "white" : "purple"}
               onClick={(e) => {}}
             >
@@ -87,7 +94,7 @@ const Post: React.FC<{}> = () => {
             </Button>
           </div>
           <div className="flex flex-col w-40 item-center">
-            <span className="text-xs">2021년 12월 3일</span>
+            <span className="text-s">2021년 12월 3일</span>
           </div>
         </div>
       </div>
@@ -95,22 +102,22 @@ const Post: React.FC<{}> = () => {
         <div className="absoulte flex flex-col ml-5">
           {isLoading ? <>{weatherElement}</> : <></>}
         </div>
-        <div className="w-70 flex flex-col mt-5  h-20 justify-center">
-          <div className="flex flex-col mt-2 ml-3 text-xs">기본태그</div>
+        <div className="w-80 flex flex-col mt-6  h-20 justify-center">
+          <div className="flex flex-col mt-2 ml-3 text-s font-semibold">
+            기본태그
+          </div>
           <div className="flex flex-col  p-2 text-xl">#코트 #맨투맨</div>
-          <div className="flex flex-col mt-2 ml-3 text-xs">사용자태그</div>
+          <div className="flex flex-col mt-2 ml-3 text-s font-semibold">
+            사용자태그
+          </div>
           <div className="flex flex-col  p-2 text-xl">#겨울 #추워 #ootd</div>
         </div>
       </div>
       <div className="w-full flex flex-col  border-2 shadow rounded-md  mt-5  ">
-        <div>
-          <img
-            src="/옷사진.jpg"
-            width="100%"
-            className="p-5 align-center"
-          ></img>
+        <div className="flex justify-center items-center">
+          <img src="/옷사진.jpg" width="90%" className="p-5 align-center"></img>
         </div>
-        <div className="p-5">
+        <div className="p-5 text-l">
           오늘 코트 입고 나왔는데 딱 좋네요 다들 감기 조심하세요!
         </div>
       </div>
