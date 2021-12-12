@@ -23,31 +23,6 @@ export class PostController extends BaseController {
       }); 
 
       // 반복문으로 배열안에 있는 postProps를 모두 꺼냄?
-      
-      
-
-      // let data: PostProps = {
-      //   post_no: parseInt(req.params.post_no),
-      //   post_content: "게시글 컨텐츠",
-      //   post_view_count: 10,
-      //   post_kind: "옷",
-      //   post_written_date: "2021-10-11",
-      //   post_weather: "맑음 67% 7도",
-      //   post_title: "게시글 제목",
-      //   post_like_count: 11,
-      //   post_useful_count: 12,
-      //   mem_no: 0,
-      // };
-
-      // let postArray = new Array();
-
-      // for (var i = 0; i < 10; i++) {
-      //   let temp = data;
-      //   temp.post_no = i;
-      //   postArray.push(temp);
-      // }
-
-      // res.send(JSON.stringify(postArray));
     };
   }
 
@@ -61,9 +36,9 @@ export class PostController extends BaseController {
         // console.log(post);
         // console.log(Btag);
         // console.log(Utag);
-        res.send(JSON.stringify([post, Btag, Utag]));
+        // res.send(JSON.stringify([post, Btag, Utag])); // [{PostProps}, ..], [{}, ..], [{}, ..]
         // 데이터를 전달해 줄 때
-        // res.send(오브젝트/배열)
+        res.send([post, Btag, Utag]);
       });
     };
   }
