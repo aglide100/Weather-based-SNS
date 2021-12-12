@@ -66,8 +66,15 @@ export default function Layout({
             </a>
           </Link>{" "}
           <div className="flex flex-row w-full justify-end">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <div>{loginMenu}</div>
+              <div>
+                <Link href="/mypage">
+                  <a>
+                    <img src="/mypage.png" className="w-10 h-9 mr-5"></img>
+                  </a>
+                </Link>{" "}
+              </div>
               <div>
                 <Link href="/category">
                   <a>
