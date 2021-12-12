@@ -65,16 +65,16 @@ export default function Layout({
               <img src="/home.png" className="w-10 h-9"></img>
             </a>
           </Link>{" "}
-          <div className=" flex flex-row w-full justify-end">
-            <div className="grid-2 grid-cols-2">
-              <div>{loginMenu} </div>
-            </div>
-            <div>
-              <Link href="/category">
-                <a>
-                  <img src="/메뉴 검정.png" className="w-10 h-9 ml-2"></img>
-                </a>
-              </Link>{" "}
+          <div className="flex flex-row w-full justify-end">
+            <div className="grid grid-cols-2 gap-3">
+              <div>{loginMenu}</div>
+              <div>
+                <Link href="/category">
+                  <a>
+                    <img src="/메뉴 검정.png" className="w-10 h-9 mr-5"></img>
+                  </a>
+                </Link>{" "}
+              </div>
             </div>
           </div>
         </nav>
