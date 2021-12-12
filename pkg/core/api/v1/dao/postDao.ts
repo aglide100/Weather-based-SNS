@@ -9,17 +9,16 @@ export class PostDao extends BaseDao {
   }
 
   public static getInstance(): PostDao {
-    // 인스턴스 설정
     if (!PostDao.instance) {
-      // PostDao가 없다면
-      console.log("Create PostDao Instance...");
+      console.log("Creating PostDao Instance...");
       PostDao.instance = new PostDao();
     }
+
     return PostDao.instance;
   }
 
   public async selectPosts(callback: Function) {
-    const qry = `SELECT * , (SELECT count("express_kind") FROM "Express" WHERE  "P".post_no = "Express".post_no AND  express_kind= 'like') AS like_count, 
+    const qry = `SELECT * , (SELECT count("express_kind") FROM "Express" WHERE "P".post_no = "Express".post_no AND  express_kind= 'like') AS like_count, 
         (SELECT count("express_kind") FROM "Express" WHERE  "P".post_no = "Express".post_no AND  express_kind= 'usefull') AS useful_count 
         FROM "Post" AS "P"
         `;
@@ -66,9 +65,9 @@ export class PostDao extends BaseDao {
         (SELECT count("express_kind") FROM "Express" WHERE  "P".post_no = "Express".post_no AND  express_kind= 'like') AS like_count, 
         (SELECT count("express_kind") FROM "Express" WHERE  "P".post_no = "Express".post_no AND  express_kind= 'usefull') AS useful_count,
         (SELECT count("express_kind") FROM "Express" WHERE  "P".post_no = "Express".post_no AND  express_kind= 'dislike') AS dislike_count 
-                FROM "Post" AS "P" WHERE post_no = 1;
+                FROM "Post" AS "P" WHERE post_no = $1
         `;
-    const qry_Btag = `select * from "Post_Basic_tag" full join "Basic_tag" on "Post_Basic_tag".basic_tag_no = "Basic_tag".basic_tag_no where post_no =$1;`;
+    const qry_Btag = `select * from "Post_Basic_tag" full join "Basic_tag" on "Post_Basic_tag".basic_tag_no = "Basic_tag".basic_tag_no where post_no = $1`;
     const qry_Utag = `select * from "Post_User_tag" full join "User_tag" on "Post_User_tag".User_tag_no = "User_tag".User_tag where post_no = $1`;
     const pool = this.getPool();
 
@@ -78,7 +77,7 @@ export class PostDao extends BaseDao {
         client.query(qry, [post_no], (err, result) => {
           if (err) {
             console.log("Can't exec query!" + err);
-            callback(null, err);
+            callback(null, null, null, err);
             return;
           }
           var data = result.rows;
@@ -101,7 +100,7 @@ export class PostDao extends BaseDao {
             // 기본태그 구하기
             if (err) {
               console.log("Can't BTAG exec query!" + err);
-              callback(null, err);
+              callback(null, null, null, err);
               return;
             }
             var qr = result1.rows;
@@ -118,7 +117,7 @@ export class PostDao extends BaseDao {
               // 사용자태그 구하기
               if (err) {
                 console.log("Can't UTAG exec query!" + err);
-                callback(null, err);
+                callback(null, null, null, err);
                 return;
               }
               var q1r = result2.rows;
@@ -131,10 +130,11 @@ export class PostDao extends BaseDao {
                 // console.log("사용자태그 +" + taginfo);
                 Utag.push(taginfo);
               }
-              callback(post, Btag, Utag);
+              callback(post, Btag, Utag, null);
             });
           });
         });
+        client.release();
       });
     } catch (e) {
       console.log("Dao insertPost err" + e);

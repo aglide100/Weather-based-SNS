@@ -29,6 +29,7 @@ function App({ Component, pageProps }) {
       {/* <RequireLogin> */}
       <AnimatePresence exitBeforeEnter initial={false}>
         <motion.div
+          className="h-screen overflow-scroll"
           key={router.pathname}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

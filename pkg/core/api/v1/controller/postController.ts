@@ -1,7 +1,7 @@
 import { BaseController } from "../../../controller/baseController";
 import { Handler, Request, Response } from "express";
 import { PostProps } from "../common/";
-import { PostDao } from "../dao/postDAO";
+import { PostDao } from "../dao/postDao";
 
 export class PostController extends BaseController {
   constructor() {
@@ -35,13 +35,18 @@ export class PostController extends BaseController {
       // 게시물 번호로 정보를 받아와서
       PostDao.getInstance().PostDetail(
         req.params.post_no,
-        (post: any, Btag: any, Utag: any) => {
+        (post: any, Btag: any, Utag: any, err: Error) => {
+          if (err != null) {
+            console.log("Can't Login new member" + err);
+            res.status(400).send("post not found");
+          } else {
+            res.send([post, Btag, Utag]);
+          }
           // console.log(post);
           // console.log(Btag);
           // console.log(Utag);
           // res.send(JSON.stringify([post, Btag, Utag])); // [{PostProps}, ..], [{}, ..], [{}, ..]
           // 데이터를 전달해 줄 때
-          res.send([post, Btag, Utag]);
         }
       );
     };

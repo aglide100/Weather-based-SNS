@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostController = void 0;
 const baseController_1 = require("../../../controller/baseController");
-const postDAO_1 = require("../dao/postDAO");
+const postDao_1 = require("../dao/postDao");
 class PostController extends baseController_1.BaseController {
     constructor() {
         super();
@@ -12,7 +12,7 @@ class PostController extends baseController_1.BaseController {
             console.log("returns Post List");
             this.setHeader(res);
             let postlist = Array();
-            postDAO_1.PostDao.getInstance().selectPosts((datalist) => {
+            postDao_1.PostDao.getInstance().selectPosts((datalist) => {
                 postlist = datalist;
                 // console.log(postlist);
                 // PostProps가 있는 배열을 전송
@@ -27,13 +27,19 @@ class PostController extends baseController_1.BaseController {
             console.log("returns Company Detail" + req.params.post_no);
             this.setHeader(res);
             // 게시물 번호로 정보를 받아와서
-            postDAO_1.PostDao.getInstance().PostDetail(req.params.post_no, (post, Btag, Utag) => {
+            postDao_1.PostDao.getInstance().PostDetail(req.params.post_no, (post, Btag, Utag, err) => {
+                if (err != null) {
+                    console.log("Can't Login new member" + err);
+                    res.status(400).send("post not found");
+                }
+                else {
+                    res.send([post, Btag, Utag]);
+                }
                 // console.log(post);
                 // console.log(Btag);
                 // console.log(Utag);
                 // res.send(JSON.stringify([post, Btag, Utag])); // [{PostProps}, ..], [{}, ..], [{}, ..]
                 // 데이터를 전달해 줄 때
-                res.send([post, Btag, Utag]);
             });
         };
     }
