@@ -109,6 +109,13 @@ if (apiVersion == "v1") {
     "ad history",
     adCtrl.getAdHistoryList()
   );
+  server.addRule(
+    apiVersion + "/adList",
+    "GET",
+    "get Advertise List",
+    "ad history",
+    adCtrl.getAdList()
+  );
 }
 process.on("uncaughtException", function (err) {
   console.log("uncaughtException!! :", err);

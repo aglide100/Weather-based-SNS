@@ -27,7 +27,23 @@ export class AdController extends BaseController {
       );
     };
   }
+  public getAdList(): Handler {
+    return (req: Request, res: Response) => {
+      console.log("getAdDetail");
+      this.setHeader(res);
 
+      AdDao.getInstance().getAdList(
+        (response: any, err: any) => {
+          if (err != null) {
+            console.log("Error in Dao", err);
+            this.handlingErr(req, res, err);
+          }
+
+          res.send(JSON.stringify(response));
+        }
+      );
+    };
+  }
   public getAdHistoryList(): Handler {
     return (req: Request, res: Response) => {
       console.log("getAdHistory", req.params.com_no);
