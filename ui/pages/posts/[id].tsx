@@ -274,7 +274,7 @@ const Post: React.FC<{}> = () => {
               color={isFollow ? "white" : "purple"}
               onClick={(e) => {}}
             >
-              {isFollow ? "팔로우" : "팔로우 취소"}
+              {isFollow ? "팔로우" : "팔로잉"}
             </Button>
           </div>
           <div className="flex flex-col w-40 item-center">
