@@ -86,7 +86,7 @@ const Post: React.FC<{}> = () => {
               {/* {props.user_name} */} 이동휘
             </span>
             <Button
-              size={"mediumlarge"}
+              size={"medium"}
               color={isFollow ? "white" : "purple"}
               onClick={(e) => {}}
             >
