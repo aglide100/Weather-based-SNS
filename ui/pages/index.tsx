@@ -152,7 +152,7 @@ const IndexPage: React.FC<{}> = ({}) => {
     eventArray.push(data);
   }
   return (
-    <div className="flex flex-col w-full mt-10">
+    <div className="flex flex-col w-full h-screen mt-10">
       <div className="flex flex-row justify-around mr-6">
         <div className="text-center ">
           <div className="font-semibold text-lg">

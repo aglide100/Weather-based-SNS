@@ -69,33 +69,38 @@ export const SignInPage: React.FC<{}> = () => {
   const onSubmitHandle = (event) => {
     console.log("Click Submit handle!");
 
-    const data = JSON.stringify({
-      member_no: UserID,
-      password: UserPassword,
-    });
-    const axiosObj = axios.default;
+    // const data = JSON.stringify({
+    //   member_no: UserID,
+    //   password: UserPassword,
+    // });
 
-    axiosObj
-      .post("http://localhost:4000/api/v1/member/login", data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log("Successfully posted data! get data!" + response);
-        setCookie("accessToken", response.data.accessToken);
-        setCookie("user", response.data.user);
-        setCookie("member_no", UserID);
+    // setCookie("accessToken", response.data.accessToken);
+    setCookie("user", UserID);
+    setCookie("member_no", UserID);
 
-        document.location.href = "/";
-      })
-      .catch((error) => {
-        alert("데이터를 전송하지 못했습니다!" + error);
-      });
+    document.location.href = "/";
+    // const axiosObj = axios.default;
+
+    // axiosObj
+    //   .post("http://localhost:4000/api/v1/member/login", data, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log("Successfully posted data! get data!" + response);
+    //     setCookie("accessToken", response.data.accessToken);
+    //     setCookie("user", response.data.user);
+    //     setCookie("member_no", UserID);
+
+    //   })
+    //   .catch((error) => {
+    //     alert("데이터를 전송하지 못했습니다!" + error);
+    //   });
   };
 
   return (
-    <div className="flex flex-row justify-center">
+    <div className="flex flex-row justify-center h-screen">
       <div>
         <div className="text-4xl">Login</div>
         <div className="flex flex-col justify-around">
