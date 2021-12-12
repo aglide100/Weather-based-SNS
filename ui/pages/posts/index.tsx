@@ -11,34 +11,34 @@ type PostItemProps = PostProps & {
 
 const PostItem: React.FC<PostItemProps> = (props: PostItemProps) => {
   return (
-    <div
-      onClick={props.onClickPost}
-      className="w-full flex flex-col mt-3 h-16 justify-center border-2 shadow rounded-md hover:bg-gray-200 duration-75 cursor-pointer"
-    >
-      <div className="flex flex-row justify-around w-full items-center">
-        <div className="ml-2">
-          <div className="w-6 h-6">
-            <WeatherIcon icon={props.post_weather} />
+      <div
+        onClick={props.onClickPost}
+        className="w-full flex flex-col mt-3 h-16 justify-center border-2 shadow rounded-md hover:bg-gray-200 duration-75 cursor-pointer"
+      >
+        <div className="flex flex-row justify-around w-full items-center">
+          <div className="ml-2">
+            <div className="w-6 h-6">
+              <WeatherIcon icon={props.post_weather} />
+            </div>
           </div>
-        </div>
-
-        <div className="flex w-full  ml-3">썸네일</div>
-        <div className="flex  -mr-1 text-xs " style={{ width: "200%" }}>
-          {props.post_title}
-        </div>
-        <div className="flex flex-row items-center w-full">
-          <img className="w-3 h-3 mr-2" src="/like.png" />
-          <span className="text-xs">{props.post_like_count}</span>
-        </div>
-
-        <div className="flex flex-row items-center w-full">
-          <img className="w-3 h-3 mr-1" src="/usefull.png" />
-          <span className="text-xs">{props.post_useful_count}</span>
-        </div>
-
-        <div className="w-full text-xs mr-1">{props.post_written_date}</div>
-
-        <hr />
+  
+          
+          <div className="flex ml-5 -mr-1 text " style={{ width: "230%" }}>
+            {props.post_title}
+          </div>
+          <div className="flex flex-row items-center w-full">
+            <img className="ml-6 w-3 h-3 mr-2" src="/like.png" />
+            <span className="text-xs">{props.post_like_count}</span>
+          </div>
+  
+          <div className="flex flex-row items-center w-full">
+            <img className="w-3 h-3 mr-1" src="/usefull.png" />
+            <span className="text-xs">{props.post_useful_count}</span>
+          </div>
+  
+          <div className="w-full text-xs mr-1">{props.post_written_date}</div>
+  
+          <hr />
       </div>
     </div>
   );
@@ -49,41 +49,41 @@ const PostPageList: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [postList, setPostList] = useState([]);
 
-  useEffect(() => {
-    if (!isLoading) {
-      fetchPostList();
-    }
-  }, []);
-  function fetchPostList() {
-    const axiosObj = axios.default;
-    axiosObj.get("https://wbsnsapi.non-contact-karaoke.xyz/api/v1/post/list").then((response) => {
-      setPostList(response.data);
-      setIsLoading(true);
-      });
-    }
-      // function onClickPost(post_no: string) {
-      //   router.push("/posts/" + post_no);
-      // }
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     fetchPostList();
+  //   }
+  // }, []);
+  // function fetchPostList() {
+  //   const axiosObj = axios.default;
+  //   axiosObj.get("https://wbsnsapi.non-contact-karaoke.xyz/api/v1/post/list").then((response) => {
+  //     setPostList(response.data);
+  //     setIsLoading(true);
+  //     });
+  //   }
+      function onClickPost(post_no: string) {
+        router.push("/posts/" + post_no);
+      }
     
-      // useEffect(() => {
-      //   if (router.isReady) {
-      //     let tempPostList = PostDumpDatas.map((post, index) => {
-      //       return (
-      //         <li className="px-3" key={"post_" + index}>
-      //           <PostItem
-      //             {...post}
-      //             onClickPost={(e) => {
-      //               e.preventDefault();
-      //               onClickPost(post.post_no.toString());
-      //             }}
-      //           ></PostItem>
-      //         </li>
-      //       );
-      //     });
-      //     setPostList(tempPostList);
-      //     setIsLoading(true);
-      //   }
-      // }, [router.isReady]);
+      useEffect(() => {
+        if (router.isReady) {
+          let tempPostList = PostDumpDatas.map((post, index) => {
+            return (
+              <li className="px-3" key={"post_" + index}>
+                <PostItem
+                  {...post}
+                  onClickPost={(e) => {
+                    e.preventDefault();
+                    onClickPost(post.post_no.toString());
+                  }}
+                ></PostItem>
+              </li>
+            );
+          });
+          setPostList(tempPostList);
+          setIsLoading(true);
+        }
+      }, [router.isReady]);
 
   
   return (
