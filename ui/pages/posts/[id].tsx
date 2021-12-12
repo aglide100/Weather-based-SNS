@@ -53,22 +53,18 @@ const Post: React.FC<{}> = () => {
         .then((res: any) => {
           if (res.data != undefined) {
             let response = res.data;
+            // res는 [PostProps, {}, {}] 형식으로 되어있음
 
             if (response == undefined) {
               alert("Err!");
 
               router.push("/");
             }
-            //???????? 태그는 어디서 가져오남...
-
-            // Btag_ = ObjAry_[1];
-            // Utag_ = ObjAry_[2];
             
             setPostdata(response[0]);
             setBtag(response[1]);
             setUtag(response[2]);
-            // setBtag(Btag_);
-            // setUtag(Utag_);
+            
 
             setIsLoading(true);
 
@@ -104,8 +100,7 @@ const Post: React.FC<{}> = () => {
             <div className="flex flex-row items-center w-full">
               <img className="w-3 h-3 mr-1" src="/싫어요.png" />
               <span className="text-xs">
-                {/* 싫어요가 없어요..... */}
-                {/* {postdata.post_dislike} */}
+                {postdata.post_dislike_count}
               </span>
             </div>
             <div className="flex flex-row items-center w-full">
