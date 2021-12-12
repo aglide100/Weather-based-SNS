@@ -34,7 +34,7 @@ export default function Layout({
     } else {
       setLoginMenu(
         <>
-          {token} |{" "}
+          {token}{" "}
           <span
             onClick={() => {
               removeCookie("user");

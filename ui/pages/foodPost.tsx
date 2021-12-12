@@ -22,7 +22,6 @@ const FoodItem: React.FC<PostItemProps> = (props: PostItemProps) => {
           </div>
         </div>
 
-        
         <div className="flex ml-5 -mr-1 text " style={{ width: "230%" }}>
           {props.post_title}
         </div>
@@ -61,33 +60,32 @@ const FoodPostList: React.FC<{}> = () => {
   //     setIsLoading(true);
   //     });
   //   }
-      function onClickPost(post_no: string) {
-        router.push("/posts/" + post_no);
-      }
-    
-      useEffect(() => {
-        if (router.isReady) {
-          let tempPostList = FoodDumpDatas.map((post, index) => {
-            return (
-              <li className="px-3" key={"post_" + index}>
-                <FoodItem
-                  {...post}
-                  onClickPost={(e) => {
-                    e.preventDefault();
-                    onClickPost(post.post_no.toString());
-                  }}
-                ></FoodItem>
-              </li>
-            );
-          });
-          setPostList(tempPostList);
-          setIsLoading(true);
-        }
-      }, [router.isReady]);
+  function onClickPost(post_no: string) {
+    router.push("/posts/" + post_no);
+  }
 
-  
+  useEffect(() => {
+    if (router.isReady) {
+      let tempPostList = FoodDumpDatas.map((post, index) => {
+        return (
+          <li className="px-3" key={"post_" + index}>
+            <FoodItem
+              {...post}
+              onClickPost={(e) => {
+                e.preventDefault();
+                onClickPost(post.post_no.toString());
+              }}
+            ></FoodItem>
+          </li>
+        );
+      });
+      setPostList(tempPostList);
+      setIsLoading(true);
+    }
+  }, [router.isReady]);
+
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full h-screen flex flex-col">
       <div>{router.query.category}</div>
       <hr />
       <div className="relative">

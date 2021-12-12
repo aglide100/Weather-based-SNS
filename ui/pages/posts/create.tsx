@@ -124,7 +124,7 @@ const TagPopUp: React.FC<TagPopUpProps> = (props: TagPopUpProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed w-screen h-80 z-30 flex justify-center flex-col"
+      className="fixed w-screen h-80 z-30 flex justify-center flex-col "
     >
       <div className="fixed w-3/4 sm:w-2/4  h-80 border-4 border-blue-300  bg-white rounded-lg flex flex-col justify-between z-20">
         <div>{popUpContent}</div>
@@ -277,7 +277,7 @@ const CreatePostPage: React.FC<{}> = () => {
   }
 
   return (
-    <div className="flex flex-col items-center p-10 text-2xl ">
+    <div className="flex flex-col items-center p-10 text-2xl w-full h-screen ">
       <div className="w-full mb-1 flex flex-row">
         <input
           type="text"
@@ -405,7 +405,7 @@ const CreatePostPage: React.FC<{}> = () => {
           size={"medium"}
           onClick={(e) => {
             e.preventDefault();
-            alert("wip");
+            alert("등록되었습니다");
           }}
         >
           등록하기
