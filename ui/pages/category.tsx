@@ -9,7 +9,7 @@ const MainPage: React.FC<{}> = () => {
       <div
         onClick={(event) => {
           event.preventDefault();
-          router.push("/category/clothes");
+          router.push("/posts");
         }}
       >
         <div className="bg-indigo-200" style={{ height: "116.6px" }}></div>
@@ -22,7 +22,7 @@ const MainPage: React.FC<{}> = () => {
       <div
         onClick={(event) => {
           event.preventDefault();
-          router.push("/category/food");
+          router.push("/foodPost");
         }}
       >
         <div className="bg-indigo-300" style={{ height: "116.6px" }}></div>
