@@ -119,72 +119,74 @@ export const SignUpPage: React.FC<{}> = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center">
-      <div className="flex flex-col justify-around">
-        Hello👋
-        <div className="mt-3">
-          <InputField
-            type="text"
-            name="id"
-            placeholder="ID"
-            label="ID"
-            isAutocomplete={false}
-            validationErrorMsg={UserIDErrorMsg}
-            isInvalid={UserIDInvalid}
-            onChange={(UserID) => {
-              const { isInvalid, errorMessage } = onUserIDHandle(UserID);
-              setUserID(UserID);
-              setUserIDErrorMsg(errorMessage);
-              setUserIDInvalid(isInvalid);
+    <div className="w-full h-screen">
+      <div className="flex flex-row justify-center ">
+        <div className="flex flex-col justify-around mt-5">
+          Hello👋
+          <div className=" mt-5">
+            <InputField
+              type="text"
+              name="id"
+              placeholder="ID"
+              label="ID"
+              isAutocomplete={false}
+              validationErrorMsg={UserIDErrorMsg}
+              isInvalid={UserIDInvalid}
+              onChange={(UserID) => {
+                const { isInvalid, errorMessage } = onUserIDHandle(UserID);
+                setUserID(UserID);
+                setUserIDErrorMsg(errorMessage);
+                setUserIDInvalid(isInvalid);
+              }}
+            ></InputField>
+          </div>
+          <div>
+            <InputField
+              type="password"
+              name="password"
+              placeholder="Password"
+              label="Password"
+              isAutocomplete={false}
+              validationErrorMsg={UserPasswordErrorMsg}
+              isInvalid={UserPasswordInvalid}
+              onChange={(UserPassword) => {
+                const { isInvalid, errorMessage } =
+                  onUserPasswordHandle(UserPassword);
+                setUserPassword(UserPassword);
+                setUserPasswordErrorMsg(errorMessage);
+                setUserPasswordInvalid(isInvalid);
+              }}
+            ></InputField>
+          </div>
+          <div>
+            <InputField
+              type="text"
+              name="text"
+              placeholder="이름"
+              label="이름"
+              isAutocomplete={false}
+              validationErrorMsg={UserNameErrorMsg}
+              isInvalid={false}
+              onChange={(UserName) => {
+                const { isInvalid, errorMessage } = onUserNameHandle(UserName);
+                setUserName(UserName);
+                setUserNameErrorMsg(errorMessage);
+                setUserNameInvalid(isInvalid);
+              }}
+            ></InputField>
+          </div>
+          <Button
+            size="medium"
+            type="button"
+            color="white"
+            isDisabled={!isItValidForm()}
+            onClick={(e) => {
+              onSubmitHandle(e);
             }}
-          ></InputField>
+          >
+            Submit
+          </Button>
         </div>
-        <div className="mt-3">
-          <InputField
-            type="password"
-            name="password"
-            placeholder="Password"
-            label="Password"
-            isAutocomplete={false}
-            validationErrorMsg={UserPasswordErrorMsg}
-            isInvalid={UserPasswordInvalid}
-            onChange={(UserPassword) => {
-              const { isInvalid, errorMessage } =
-                onUserPasswordHandle(UserPassword);
-              setUserPassword(UserPassword);
-              setUserPasswordErrorMsg(errorMessage);
-              setUserPasswordInvalid(isInvalid);
-            }}
-          ></InputField>
-        </div>
-        <div className="mt-3">
-          <InputField
-            type="text"
-            name="text"
-            placeholder="이름"
-            label="이름"
-            isAutocomplete={false}
-            validationErrorMsg={UserNameErrorMsg}
-            isInvalid={false}
-            onChange={(UserName) => {
-              const { isInvalid, errorMessage } = onUserNameHandle(UserName);
-              setUserName(UserName);
-              setUserNameErrorMsg(errorMessage);
-              setUserNameInvalid(isInvalid);
-            }}
-          ></InputField>
-        </div>
-        <Button
-          size="medium"
-          type="button"
-          color="white"
-          isDisabled={!isItValidForm()}
-          onClick={(e) => {
-            onSubmitHandle(e);
-          }}
-        >
-          Submit
-        </Button>
       </div>
     </div>
   );

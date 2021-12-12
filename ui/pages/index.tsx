@@ -64,9 +64,18 @@ const TagList: React.FC<{}> = () => {
 
           <div className="w-4/5 mx-3 mt-3">
             <div>
-              <div>아우터 - 코트 </div>
-              <div>상의 - 니트/후드티 </div>
-              <div>하의 - 긴바지</div>
+              <div>
+                <span className="underline underline-offset-8">아우터</span> -
+                코트{" "}
+              </div>
+              <div>
+                <span className="underline underline-offset-8">상의</span> -
+                니트/후드티{" "}
+              </div>
+              <div>
+                <span className="underline underline-offset-8">하의</span> -
+                긴바지
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +151,7 @@ const IndexPage: React.FC<{}> = ({}) => {
   const eventArray = new Array();
 
   function onClickHandler(id: string) {
-    alert(id);
+    alert("성향이 반영되었습니다 ! 오늘도 좋은 하루 보내세요");
   }
   for (var i = 1; i < 11; i++) {
     let data: TodayWeatherEventProps = {
@@ -152,7 +161,7 @@ const IndexPage: React.FC<{}> = ({}) => {
     eventArray.push(data);
   }
   return (
-    <div className="flex flex-col w-full mt-10">
+    <div className="flex flex-col w-full h-screen mt-10">
       <div className="flex flex-row justify-around mr-6">
         <div className="text-center ">
           <div className="font-semibold text-lg">

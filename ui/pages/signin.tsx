@@ -95,7 +95,7 @@ export const SignInPage: React.FC<{}> = () => {
   };
 
   return (
-    <div className="flex flex-row justify-center">
+    <div className="flex flex-row justify-center w-full h-screen">
       <div>
         <div className="text-4xl">Login</div>
         <div className="flex flex-col justify-around">
