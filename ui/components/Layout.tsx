@@ -25,10 +25,12 @@ export default function Layout({
       setLoginMenu(
         <>
           <Link href="/signin">
-            <a>
-              <img src="/login (1).png" className="w-10 h-9"></img>
-            </a>
+            <a>로그인</a>
           </Link>{" "}
+          |{" "}
+          <Link href="/signup">
+            <a>회원가입</a>
+          </Link>
         </>
       );
     } else {
@@ -43,9 +45,9 @@ export default function Layout({
               document.location.href = "/";
             }}
           >
-            <div></div>
             로그아웃
           </span>{" "}
+          |{" "}
         </>
       );
     }
@@ -55,28 +57,18 @@ export default function Layout({
     <div>
       <Head>
         <title>{title}</title>
-        <meta charSet="utf-9" />
+        <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <header>
-        <nav className="ml-3 mt-2 w-full flex flex-row">
+        <nav>
           <Link href="/">
-            <a>
-              <img src="/home.png" className="w-10 h-9"></img>
-            </a>
+            <a>메인</a>
           </Link>{" "}
-          <div className="flex flex-row w-full justify-end">
-            <div className="grid grid-cols-2 gap-3">
-              <div>{loginMenu}</div>
-              <div>
-                <Link href="/category">
-                  <a>
-                    <img src="/메뉴 검정.png" className="w-10 h-9 mr-5"></img>
-                  </a>
-                </Link>{" "}
-              </div>
-            </div>
-          </div>
+          | {loginMenu} |{" "}
+          <Link href="/category">
+            <a>메뉴</a>
+          </Link>{" "}
         </nav>
       </header>
       {children}

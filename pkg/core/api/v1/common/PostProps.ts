@@ -10,4 +10,6 @@ export type PostProps = {
   post_like_count?: number;
   post_useful_count?: number;
   mem_no: number;
+  // DB에는 사진이 존재하지만 여기에 담을 수 없음
+  // post_photo?
 };

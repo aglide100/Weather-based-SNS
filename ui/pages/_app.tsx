@@ -5,18 +5,18 @@ import UsingMobileWrapper from "../components/UsingMobileWrapper";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import "tailwindcss/tailwind.css";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect } from "react";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
 
-  const [header, setHeader] = useState<ReactElement>(null);
+  let header: ReactElement;
   useEffect(() => {
     if (router.isReady) {
       if (router.pathname.includes("/admin")) {
-        setHeader(<>{/* passed */}</>);
+        header = <>{/* passed */}</>;
       } else {
-        setHeader(
+        header = (
           <>
             <Layout title="Hello for Weather-based-SNS"></Layout>
           </>

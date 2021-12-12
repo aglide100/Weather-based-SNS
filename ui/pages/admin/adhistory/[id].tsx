@@ -14,7 +14,7 @@ const nav: ReactElement = (
       </div>
       <div className="w-1/2">
         <span className="font-semibold text-white ml-1">Admin</span>
-        <button className="mt-2 bg-white text-black px-4 py-2 rounded-md  hover:bg-white hover:text-black">
+        <button className="mt-2 bg-black text-white px-4 py-2 rounded-md  hover:bg-white hover:text-black">
           로그아웃
         </button>
       </div>
@@ -105,12 +105,7 @@ const AdhistoryListItem = (props: AdhistoryListItemProps) => {
           </td>
           <td className="p-2 whitespace-nowrap">
             <div className="text-left font-medium text-green-500">
-              {props.ad_start_date}
-            </div>
-          </td>
-          <td className="p-2 whitespace-nowrap">
-            <div className="text-left font-medium text-green-500">
-              {props.ad_end_date}
+              {props.ad_start_date} ~ {props.ad_end_date}
             </div>
           </td>
           <td className="p-2 whitespace-nowrap">
@@ -128,8 +123,6 @@ const AdhistoryListItem = (props: AdhistoryListItemProps) => {
   );
 };
 
-/* 광고번호 광고내용 시작일자 마감일자 광고비용 결제수단 노출횟수 */
-
 const AdminPage: React.FC<{}> = ({}) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -139,7 +132,6 @@ const AdminPage: React.FC<{}> = ({}) => {
   const [adList, setAdList] = useState<AdvertiseProps[]>([]);
   let adListElemt: ReactElement[];
   let adMemo = new Array();
-
   useEffect(() => {
     if (router.isReady && !isLoading) {
       //   com_no!

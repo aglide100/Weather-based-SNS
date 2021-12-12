@@ -47,7 +47,6 @@ if (apiVersion == "v1") {
     server.addRule(apiVersion + "/post/:post_no", "GET", "get Post detail", "post", postCtrl.getPostDetail());
     server.addRule(apiVersion + "/adDetail/:ad_no", "GET", "get Advertise detail", "ad", adCtrl.getAdDetail());
     server.addRule(apiVersion + "/adHistory/:com_no", "GET", "get Advertise history detail", "ad history", adCtrl.getAdHistoryList());
-    server.addRule(apiVersion + "/adList", "GET", "get Advertise List", "ad history", adCtrl.getAdList());
 }
 process.on("uncaughtException", function (err) {
     console.log("uncaughtException!! :", err);

@@ -12,7 +12,7 @@ const PromotionPost: React.FC<{}> = () => {
     <div className="grid grid-cols-2 ">
       <div className="mt-10">
         <div
-          className=" box-content h-200 w-50
+          className=" box-content h-100 w-50
         m-auto bg-white rounded-xl shadow-md overflow-hidden border-2"
         >
           <div className="h-56 object-cover relative">
