@@ -80,7 +80,7 @@ const User: React.FC<userProps> = (props: userProps) => {
 const Grade: React.FC<userGradeProps> = (props: userGradeProps) => {
   return (
     <div className="flex flex-col text-center mt-5">
-      <div className="text-xl">{props.nickname}</div>
+      <div className="text-xl font-bold">{props.nickname}</div>
       <div className="border-2 shadow rounded-m">
         <img src="우수회원 (1).png" width="150px"></img>
       </div>
@@ -139,11 +139,11 @@ const MyPage: React.FC<{}> = () => {
         </div>
 
         <div>
-          {/* <Grade
+          <Grade
               
                 nickname={dumpGradeData.nickname}
                 photo={dumpGradeData.photo}
-              ></Grade> */}
+              ></Grade>
         </div>
       </div>
       <div>
