@@ -240,7 +240,7 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {adListElement}
+                      <a href="./admin2">{adListElement}</a>
                     </tbody>
                   </table>
                 </div>
