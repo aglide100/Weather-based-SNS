@@ -226,7 +226,12 @@ const Post: React.FC<{}> = () => {
   return (
     <div className="p-7">
       {" "}
-      <div className="text-2xl mt-5">👔</div>
+      <span className="text-2xl mt-5">👔</span>
+      <span>
+        <a href="../">
+          <img src="/return.png" className="w-10 h-9"></img>
+        </a>
+      </span>
       <div className="w-full flex flex-col mt-5 h-16 justify-center border-2 shadow rounded-md ">
         <div className="flex flex-row justify-around w-full items-center">
           <div

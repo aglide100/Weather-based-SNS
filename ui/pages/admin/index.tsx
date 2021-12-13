@@ -97,9 +97,11 @@ const AdListItem = (props) => {
           <div className="font-medium text-gray-800">{props.ad_no}</div>
         </div>
       </td>
-      <td className="p-2 whitespace-nowrap">
-        <div className="text-left">{props.com_name}</div>
-      </td>
+      <a href="/admin/adhistory">
+        <td className="p-2 whitespace-nowrap">
+          <div className="text-left">{props.com_name}</div>
+        </td>
+      </a>
       <td className="p-2 whitespace-nowrap">
         <div className="text-left font-medium text-green-500">
           {props.ad_start_date}
@@ -163,7 +165,6 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
             }
             return 0;
           });
-
           setAdList(adArray);
 
           setIsLoading(true);
@@ -178,7 +179,7 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
   if (isLoading) {
     adListElement = adList.map((arg, index) => {
       console.log(arg);
-      return <AdListItem {...arg}></AdListItem>;
+      return <AdListItem key={index} {...arg}></AdListItem>;
     });
   } else {
     adListElement = [<div key="loading...">Loading....</div>];
