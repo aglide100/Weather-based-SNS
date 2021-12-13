@@ -163,7 +163,6 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
             }
             return 0;
           });
-
           setAdList(adArray);
 
           setIsLoading(true);
@@ -178,7 +177,7 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
   if (isLoading) {
     adListElement = adList.map((arg, index) => {
       console.log(arg);
-      return <AdListItem {...arg}></AdListItem>;
+      return <AdListItem key={index} {...arg}></AdListItem>;
     });
   } else {
     adListElement = [<div key="loading...">Loading....</div>];
@@ -239,7 +238,7 @@ const AdminIndexPage: React.FC<{}> = ({}) => {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {adListElement}
+                      <a href="./admin2">{adListElement}</a>
                     </tbody>
                   </table>
                 </div>
